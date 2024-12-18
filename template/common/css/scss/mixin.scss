@@ -1,0 +1,15 @@
+$wide : 1920px;
+$container : 1400px;
+$web : 1200px; 
+$pad : 768px; 
+$mobile : 414px;
+$fold : 281px;
+
+//media
+@mixin media($width){
+  @media (max-width: ($width - .02px)) {
+    @content;
+  }
+}
+
+

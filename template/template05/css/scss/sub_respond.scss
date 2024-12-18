@@ -1,0 +1,6 @@
+@charset "UTF-8";
+@import "../../../common/css/scss/mixin"; //공통 믹스인 - 미디어쿼리 분기 사이즈 정보
+@import "mixin"; //템플릿별 믹스인
+
+
+@import url('/template/template04/css/sub_respond.css'); //서브는 template04로 통일

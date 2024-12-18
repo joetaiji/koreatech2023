@@ -1,0 +1,125 @@
+@media (max-width: 1199.98px) {
+  .visual .control {
+    top: 20rem;
+    left: auto;
+    right: 4rem;
+    transform: none;
+    width: auto;
+  }
+  .major_txt {
+    margin-bottom: 9rem;
+  }
+  .major_txt .desc br {
+    display: none;
+  }
+  .quick_link {
+    flex-direction: column;
+    align-items: normal;
+    gap: 3rem;
+  }
+  .quick_link .item_cont {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .notice .list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .service_news .container {
+    flex-direction: column;
+  }
+  .calendar {
+    margin-bottom: 4rem;
+  }
+  .calendar .swiper {
+    padding: 2rem 0 3rem;
+    margin: 0;
+  }
+  .calendar .swiper-button {
+    display: none;
+  }
+  .calendar .swiper-scrollbar {
+    display: block;
+  }
+  .calendar .item {
+    padding: 3rem;
+  }
+  .calendar .item:hover {
+    transform: none;
+  }
+  .location_info .item_cont {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+@media (max-width: 767.98px) {
+  .major_txt .desc br {
+    display: block;
+  }
+  .quick_link {
+    bottom: 4rem;
+  }
+  .quick_link .item_cont .item {
+    width: auto;
+  }
+  section:not(.visual) {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  section h2 {
+    font-size: 2.7rem;
+  }
+  .notice .tab_nav > li {
+    flex: 1 1 auto;
+  }
+  .notice .tab_nav button {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .notice .list {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1rem;
+  }
+  .notice .list li:last-child {
+    display: none;
+  }
+  .notice .item {
+    height: auto;
+    padding: 1.5rem;
+  }
+  .notice .item .title,
+  .notice .item .desc {
+    -webkit-line-clamp: 1;
+    margin-bottom: 2rem;
+  }
+  .notice .tab_cont .more {
+    top: -5rem;
+  }
+  .service_news .container {
+    gap: 4rem;
+  }
+  .service .item_cont {
+    gap: 1rem;
+  }
+  .service .item_cont .item .icon {
+    left: 0;
+    transform: translateY(-50%) scale(0.65);
+  }
+  .service .item_cont .item .title {
+    font-size: 2rem;
+  }
+  .news .item_cont {
+    gap: 1rem;
+  }
+  .location_info {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .location_info .item_cont {
+    gap: 1rem;
+  }
+  .location_info .more {
+    position: static;
+    transform: none;
+  }
+}/*# sourceMappingURL=main_respond.css.map */

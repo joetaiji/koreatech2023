@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title></title>
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<style>
+	*{box-sizing:border-box;}
+	body {margin:0; padding:30px; font-family:'맑은 고딕'; font-size:12px; color:#333; line-height:normal;}
+
+	/*타입*/
+	i,
+	em {display: inline-block;background-color: #333;color: #fff;border-radius: 3px;padding:0px 3px;font-style: normal;font-size: 11px;margin:0 2px;}
+
+	.note{background: #ff3300;}
+	.b i{background: #1d9fc0;}
+	.p i{background: #8548d4;}	
+	
+	a{color:inherit;text-decoration:none;}
+	a:hover{text-decoration:underline;}
+	.linkWindow::after{content: '';font-family: 'xeicon';margin-right: 5px; color:#e06d01;font-weight: bold;}
+
+	.info{border: 1px solid #ddd;background: #f5f5f5; margin-bottom: 2rem;line-height: 2;}
+	
+	.nav{border-top:3px solid #333;border-bottom:3px solid #333;}
+	.nav ul{margin:0;padding:0;list-style:none;}
+	.topmenu_all{padding:0;}
+	.topmenu_all .title_area{display: none;}
+	.topmenu_all a{ padding:10px;flex:1;}
+	.topmenu_all span{color:#f3a600;}
+	.topmenu_all li{display: flex;}
+	.topmenu_all li~li{border-top:1px solid #ddd;}
+	.topmenu_all>li{background-color:#778;display: block;}
+	.topmenu_all>li>a{font-weight:bold;font-size:14px;text-align:center;display:block;width:100%;color:#fff;}
+	.topmenu_all .submenu{background-color:#fff;border:1px solid #ddd;}
+	.topmenu_all .submenu>ul>li>a{font-weight: bold;flex:0 0 20%;}
+	.topmenu_all .submenu>ul>li>a + div{background-color:#fff;flex:1;}
+	.topmenu_all .submenu>ul>li>a + div .lnb-detail>li>a{background:#f9f9fc;}
+	.topmenu_all .submenu>li>a + div,
+	.topmenu_all .submenu>ul>li>a + div .lnb-detail>li>a + .depth3,
+	.topmenu_all .depth3>li>a + .depth4{flex:1 1 80%; max-width:80%;border-left:1px solid #eee;font-size:11px;}
+	.topmenu_all .nodata{background-color:#f8f8f8;color:#ccc;}
+	.topmenu_all .complete{background:#eaeaec;}
+	
+	@media screen and (max-width:767px){
+		body{padding:10px;}
+		.topmenu_all a{max-width:100%!important;display:block;}
+		.topmenu_all a + ul{max-width:100%!important;}
+		.topmenu_all li{display: block;}
+		.topmenu_all .depth3{border-top:1px solid #f6f6f6;}
+		.topmenu_all .depth3 li{margin-left:15px;}
+	}
+	</style>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js'></script>
+<script>
+$(document).ready(function(){
+	$("title").text($("h1").text());
+	$("a").each(function(){
+		$(this).append(" <span> " + $(this).attr("href") + "</span>");		
+	}); 
+	$("em").parent().addClass("complete");
+	$(".b>a").prepend("<i>게시판</i>");
+	$(".p>a").prepend("<i>프로그램</i>"); 
+});
+</script>
+</head>
+<body>
+<h1>파일리스트[한기대] - JYC</h1>
+<div class="info">
+	<ul>
+		<li class="b"><a href="">li에 class="b"</a></li>
+		<li class="p"><a href="">li에 class="p"</a></li>
+		<li><a href=""><em>월/일</em> 작업완료일 : a링크안에 em태그로 월/일로 표기하면 complete클래스가 생성되어 셀 색이 바뀝니다.</a></li>
+		<li><a href="">개발자에게 전달할 내용등 특이사항을 적을때 사용<em class="note">특이사항</em></a></li>
+	</ul>
+</div>
+<nav class="nav" id="gnb">
+	
+	<ul id="head_menu_all" class="topmenu_all">
+		<li class="lnb1 mnfirst active">
+			<a href="">레이아웃</a>
+			<div class="submenu">
+				<ul class="sub01">
+					<li class="sub01 subfirst active"><a href="index.html">메인<em>01/10</em></a></li>
+					<li class="sub02"><a href="sub.html">서브<em>01/10</em></a></li>
+				</ul>
+			</div>
+		</li>
+		<li class="lnb1 mnfirst active">
+			<a href="">학부소개</a>
+			<div class="submenu">
+				<ul class="sub01">
+					<li class="sub01 subfirst active"><a href="">학부소개</a></li>
+					<li class="sub02"><a href="">연혁</a></li>
+					<li class="sub03"><a href="">졸업생 진로</a></li>
+					<li class="sub04 sublast"><a href="">오시는 길</a></li>
+				</ul>
+			</div>
+		</li>
+		<li class="lnb2">
+			<a href="">교직원 소개</a>
+			<div class="submenu">
+				<ul class="sub02">
+					<li class="sub01 subfirst p"><a href="">교수 소개</a></li>
+					<li class="sub02 p"><a href="">기술연구원 소개</a></li>
+					<li class="sub03 sublast p"><a href="">직원 소개</a></li>
+				</ul>
+			</div>
+		</li>
+		<li class="lnb3">
+			<a href="">졸업 후 진로</a>
+			<div class="submenu">
+				<ul class="sub03">
+					<li class="sub01 subfirst"><a href="">취업현황</a></li>
+					<li class="sub02"><a href="">졸업규정</a></li>
+					<li class="sub03 sublast"><a href="" target="_blank" rel="noopener noreferrer" title="새창으로 열림" class="linkWindow">장학제도</a></li>
+				</ul>
+			</div>
+		</li>
+		<li class="lnb4">
+			<a href="">교육</a>
+			<div class="submenu">
+				<ul class="sub04">
+					<li class="sub01 subfirst"><a href="">교육목표</a></li>
+					<li class="sub02"><a href="">교육과정</a></li>
+					<li class="sub03"><a href="">이수체계도</a></li>
+					<li class="sub04"><a href="" target="_blank" rel="noopener noreferrer" title="새창으로 열림" class="linkWindow">공학인증</a></li>
+					<li class="sub05 sublast"><a href="">실습실 안내</a></li>
+				</ul>
+			</div>
+		</li>
+		<li class="lnb5">
+			<a href="">학부서비스</a>
+			<div class="submenu">
+				<ul class="sub05">
+					<li class="sub01 subfirst b"><a href="">졸업작품</a></li>
+					<li class="sub02 b"><a href="">공학설계</a></li>
+					<li class="sub03 sublast b"><a href="">연구노트</a></li>
+				</ul>
+			</div>
+		</li>
+		<li class="lnb6">
+			<a href="">알림마당</a>
+			<div class="submenu">
+				<ul class="sub06">
+					<li class="sub01 subfirst b"><a href="">공지사항</a></li>
+					<li class="sub02 b"><a href="">강의공지</a></li>
+					<li class="sub03 b"><a href="">자료실</a></li>
+					<li class="sub04 sublast b"><a href="">서식양식자료실</a></li>
+				</ul>
+			</div>
+		</li>
+		<li class="lnb7">
+			<a href="">학부광장</a>
+			<div class="submenu">
+				<ul class="sub07">
+					<li class="sub01 subfirst"><a href="">학생회</a></li>
+					<li class="sub02"><a href="">전시회 수상내역</a></li>
+					<li class="sub03 b"><a href="">학부갤러리</a></li>
+					<li class="sub04 b"><a href="">취업게시판</a></li>
+					<li class="sub05 b"><a href="">자유게시판</a>
+						<div>
+							<ul class="lnb-detail">
+								<li class="lnb-detail-item"><a href="">상세</a></li>
+								<li class="lnb-detail-item"><a href="">쓰기</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="sub06 b"><a href="">고장신고게시판</a>
+						<div>
+							<ul class="lnb-detail">
+								<li class="lnb-detail-item"><a href="">상세</a></li>
+								<li class="lnb-detail-item"><a href="">쓰기<em class="note">게시판 커스텀</em></a></li>
+								<li class="lnb-detail-item"><a href="">메일</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="sub07 sublast b"><a href="">노트북대여신청</a>
+						<div>
+							<ul class="lnb-detail">
+								<li class="lnb-detail-item"><a href="">상세</a></li>
+								<li class="lnb-detail-item"><a href="">쓰기<em class="note">게시판 커스텀</em></a></li>
+								<li class="lnb-detail-item"><a href="">메일</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</li>
+		<li class="lnb8 mnlast">
+			<a href="">대학원</a>
+			<div class="submenu">
+				<ul class="sub08">
+					<li class="sub01 subfirst"><a href="">대학원소개</a></li>
+					<li class="sub02 sublast"><a href="">연구실소개</a></li>
+				</ul>
+			</div>
+		</li>
+		<li class="lnb8 mnlast">
+			<a href="">회원기능</a>
+			<div class="submenu">
+				<ul class="sub08">
+					<li class="sub01 subfirst p"><a href="">로그인</a></li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+
+	<!--<ul id="head_menu" class="topmenu">
+		
+		<li class="type"><a href="">콘텐츠</a>	
+		</li>
+		 <li class="type"><a href="">게시판</a>
+			<ul class="depth1">
+				<li>
+				  <a href="">공지사항</a>
+				  <ul class="depth2">
+					<li>
+					  <a href="bod_list.html">Board List</a>
+					  <a href="bod_list_detail.html">Board List(상세검색)</a>
+					</li>
+					<li>
+					  <a href="bod_view.html">Board View</a>
+					</li>
+					<li>
+					  <a href="bod_media.html">media View</a>
+					</li>
+					<li>
+					  <a href="bod_write.html">Board Write</a>
+					</li>
+				  </ul>
+				</li>
+				<li>
+				  <a href="bod_gallery.html">갤러리</a>
+				  <ul class="depth2">
+					<li>
+					  <a href="bod_gallery.html">갤러리</a>
+					  <ul class="depth3">
+						<li>
+						  <a href="bod_gallery.html">Gallery List</a>
+						</li>
+						<li>
+						  <a href="gallery_view.html">Gallery View</a>
+						</li>                    
+					  </ul>
+					</li>
+					<li>
+					  <a href="book_style1.html">북스타일1</a>
+					</li>
+					<li>
+					  <a href="book_style2.html">북스타일2</a>
+					</li>
+				  </ul>
+				  
+				</li>
+				<li>
+				  <a href="table_thumb.html">썸네일 보드</a>                  
+				</li>
+				<li>
+				  <a href="faq.html">FAQ</a>
+				</li>
+				<li>
+				  <a href="calendar.html">calendar</a>
+				</li>
+				<li>
+				  <a href="form.html">form</a>
+				</li>                
+			  </ul>
+		</li> 
+	</ul> -->
+  
+</nav>
+</body>
+</html>

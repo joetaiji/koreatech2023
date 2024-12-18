@@ -1,0 +1,104 @@
+
+
+//percent 
+@function per($target, $base) {
+  @return ($target / $base) * 100%;
+}
+
+//grid
+@mixin grid($row, $col, $gap){
+  display: grid; grid-template-rows: $row; grid-template-columns: $col; gap: $gap;
+}
+//flex
+@mixin flex($jc:center, $ai:center){
+  display: flex;justify-content:$jc; align-items:$ai;
+}
+
+//position:absolute
+@mixin pos ($pos, $n1, $n2, $x:null, $y:null){
+  position:absolute; 
+  @if ($x != null and $y == null)  {transform:translateX($x);}
+  @else if ($x != null and $y != null) {transform:translate($x, $y);} 
+  @if ($pos == lt) {left: $n1; top:$n2;}
+  @else if ($pos == rt) {right: $n1; top:$n2;}
+  @else if ($pos == lb) {left: $n1; bottom:$n2;}
+  @else if ($pos == rb) {right: $n1; bottom:$n2;}
+}
+
+//inactive
+@mixin inactive($sec:0.25s){
+  opacity:0;visibility:hidden;overflow:hidden; transition:$sec;
+}
+//inactive
+@mixin active{
+  opacity:1;visibility:visible;overflow:visible;
+}
+
+//ellipsis
+@mixin ellipsis{display:block;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+@mixin ellipsis2($row, $height, $heightFix:null) { display:block; display:-webkit-box; -webkit-line-clamp: $row; 
+  @if ($heightFix == null) { max-height:$height; }
+  @else { height:$height; }
+  -webkit-box-orient:vertical; overflow:hidden; text-overflow:ellipsis;white-space:normal;word-wrap:break-word;word-break:keep-all
+}
+
+//scrollbar
+@mixin scrollbar($thumb:#d5d7dc, $track:#f5f5f5, $size:.8rem,  $round: 0, $direction:v){
+  &::-webkit-scrollbar-track{background-color: $track; border-radius: $round;}
+  &::-webkit-scrollbar	{
+    @if ($direction == v) { width: $size; }
+    @else if ($direction == h) { height: $size; }
+  } 
+  &::-webkit-scrollbar-thumb{background-color: $thumb; border-radius: $round;}
+}
+
+//icon
+@mixin icon($cont, $size:null){
+  display:inline-block; font-family: var(--icon); content:$cont; font-size: $size;
+}
+//blank
+@mixin blank{
+	@include icon('\e980', 1em); margin-left:.3rem; font-weight:300;
+}
+
+//1px vertical Bar
+@mixin vbar($w:1px, $h:1rem, $color:#DBE0E3, $s:1rem){ position: relative;padding-left: $s;margin-left: $s;
+	&::before{content: '';display: block;background-color: $color;width: $w;height: $h;@include pos(lt, 0, 50%, 0, -50%);}
+  }
+
+@mixin bullet($width, $height, $color, $top:1rem, $round:null){
+	position:relative;
+	padding-left:$width + 1rem;
+	&::before{
+		content: ""; display:block;position:absolute;left:0;top:$top;
+		width: $width; height: $height; background: $color; border-radius: $round;
+		@if ($top == 50%){transform:translateY(-50%);}
+	}
+}
+
+//circle
+@mixin circle($size, $color:null){border-radius:50%;width:$size;height:$size;background-color:$color;}
+
+//gradient
+@mixin gradient($direction, $colorF, $colorE){
+  background: $colorF;
+  @if($direction == h){background: linear-gradient(to right, $colorF, $colorE);}
+  @else if($direction == v){background: linear-gradient(to bottom, $colorF, $colorE);}
+  @else{background: linear-gradient($direction, $colorF, $colorE);}  
+}
+
+@mixin vertical{display: inline-block;vertical-align: middle;}
+
+// //bg
+// @mixin bg($class) { background:url("../../images/kor/sub/"+ $class +".gif") 0 0 /cover no-repeat }
+// @mixin classBg($class) {
+//    .#{$class}{background:url("../../images/kor/sub/"+ $class +".gif") 0 0 /cover no-repeat;}
+// }
+
+// @mixin octagon($size){width: $size;height: $size;position: relative;
+//   &::before,&::after{content: ""; width: $size + 0.1rem; height: 0; position: absolute;left: -0.05rem;border: $size/3.3 solid transparent;border-left-color:#fff;border-right-color:#fff;}
+//   &::before { top: -$size/3.3; }
+//   &:after { bottom: -$size/3.3;} 
+// }
+
+

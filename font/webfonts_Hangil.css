@@ -1,0 +1,14 @@
+@font-face {
+	font-family: 'Hangil E-type';	
+	font-weight: 700;
+	font-display: swap;
+	src: local('Hangil E-type'), url('./hangil/Hangil E-type.woff2') format('woff2'), url('./Hangil/Hangil E-type.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Hangil E-type';
+	font-weight: 400;
+	font-display: swap;
+	src: local('Hangil E-type'), url('./Hangil/Hangil E-type.woff2') format('woff2'), url('./Hangil/Hangil E-type.woff') format('woff');
+}
+

@@ -1,0 +1,2457 @@
+@charset "utf-8";
+@import '../../../template01/css/scss/mixin.scss';
+@import url('cmp.css');
+
+
+/*-------------------------------------------------
+title       : 콘텐츠 공통
+History     : 2023-12-19 ㅈㅁㅈ
+-------------------------------------------------*/
+
+// 콘텐츠 하단
+.contents_info 
+{
+    & >  *
+    {
+        overflow: hidden;
+
+        & + * {margin-top: -1px;}
+
+        &:first-child {border-radius: 1rem 1rem 0 0;}
+        &:last-child {border-radius: 0 0 1rem 1rem;}
+        &:first-child:last-child {border-radius: 1rem;}
+    }
+
+    .group
+    {
+        @include table;
+        border: 1px solid #ddd;
+
+        .qr {width: 15rem; border-left: 1px solid #ddd;}
+
+        .title
+        {
+            position: relative; margin-bottom: 1rem; font-size: $size; font-weight: 400;
+
+            & > strong {display: block; font-size: 1.8rem; font-weight: 700; color: #000;}
+
+            .txt 
+            {
+                position: absolute; right: 0; bottom: 0; color: #888;
+
+                &::before {content: '[ ';}
+                &::after {content: ' ]';}
+
+                strong {font-weight: normal;}
+                span + span::before {content: ' / ';}
+            }
+        }
+    }
+}
+
+// 만족도 조사
+#satisfy 
+{
+    position: relative; padding: 4rem 3rem; background-color: #F6F7F9; color: #000; word-break: keep-all;
+
+    fieldset > strong {display: block; margin-bottom: 2rem; font-size: 1.8rem; font-weight: 600; color: #000;}
+
+    .btn 
+    {
+        @include height(4.2rem, 1px, #484C59);
+        position: absolute; right: 3rem; bottom: 4rem; width: 6.5rem; background-color: #484C59; color: #fff; text-align: center; transition: $time2; cursor: pointer;
+
+        &:hover, &:focus {background-color: #fff; font-weight: 600; color: #484C59;}
+    }
+}
+
+// 만족도 조사 중 공공누리
+.kogl 
+{
+    @include table;
+    border: 1px solid #ddd; word-break: keep-all;
+
+    .img {width: 25rem; padding: 1rem; border-right: 1px solid #ddd; background-color: #fff; text-align: center;}
+    .txt {padding: 1rem 2rem;}
+}
+
+// 만족도 조사 중 콘텐츠 정보책임자
+.duty
+{
+    position: relative; padding: 1rem 1.5rem; border: 1px solid #ddd; background-color: #fff; line-height: 3rem;
+
+    .title 
+    {
+        @include square(3rem);
+        margin-right: 1rem; border-radius: 100%; background-color: #484C59; font-size: $size; font-weight: 400; color: #fff;
+
+        &::before {@include icon(type3, "\F264"); font-family: $icon1;}
+    }
+
+    ul {display: inline;}
+
+    li 
+    {
+        display: inline;
+
+        &::after {display: inline-block; position: relative; top: -0.1rem; width: 1px; height: 1rem; margin: 0 1rem; background-color: #ddd; content: ''; vertical-align: middle;}
+        &:last-child::after {display: none;}
+    }
+
+    .date {position: absolute; right: 1.5rem; top: 1rem;}
+    .label {margin-right: 0.5rem; font-weight: 700; color: #484C59;}
+}
+//==================================================
+
+// 타이틀
+[class*="title"] {font-weight: 600; line-height: 130%; word-break: keep-all;}
+.title4 {@include title(1rem 0, 1.9rem, #3E3E3E);}
+.depth4_tab + .title1 + .img1 {margin-top: 0;}
+
+// 타이틀1
+.title1 
+{
+    @include title(7rem 0 2.5rem, 2.8rem, #3E3E3E); 
+    font-weight: 700;
+
+    & + .title2 {margin-top: -1rem;}
+    & + ul.box6.type4 {margin-top: 0;}
+    & + p + p.box2.type1 {margin-top: 3rem;}
+
+    i {margin-right: 1rem;}
+}
+
+// 타이틀2
+.title2 
+{
+    @include title(5rem 0 1.5rem, 2.5rem, #22449C); text-align: left;
+
+    & + .title3 {margin-top: -0.5rem;}
+    & + .list_img2 {margin-top: 0;}
+}
+
+// 타이틀3
+.title3 
+{
+    @include title(3rem 0 1.5rem, 2.1rem, #3E3E3E);
+
+    & + .table1 {margin-top: 0;}
+}
+
+// 블릿
+.bul2, .bul3 
+{ 
+    margin-top: 2.5rem;
+
+    & > li 
+    { 
+        @include bul(3rem);
+
+        &::before {@include square(2.4rem); top: 0.25rem; background-color: #22449C; font-size: 1.4rem; font-weight: 600; color: #fff;}
+        & + li {margin-top: 0.5rem;}
+
+        @for $i from 1 through 30 { &:nth-child(#{$i})::before {content: '#{$i}';} } 
+    } 
+}
+
+// 블릿1
+.bul1
+{
+    margin: 1rem 0 2rem;
+
+    & > li
+    {
+        @include bul(1.5rem);
+        &::before {left: 0.5rem; top: 1.15rem; width: 0.4rem; height: 0.4rem; border-radius: 100%; background-color: #9A9A9A;}
+
+        .txt1 {margin-bottom: 0.5rem;}
+    }
+
+    & + .box2 {margin-top: 1.5rem;}
+
+    &:first-child {margin-top: 0;}
+    &:last-child {margin-bottom: 0;}
+}
+
+// 블릿2
+.bul2
+{
+    & > li
+    {
+        &::before {border-radius: 100%;}
+
+        & > p:first-child > .btn_type1 {margin: 1.5rem 0 2rem;}
+    }
+
+    &.type1
+    {
+        & > li
+        {
+            @for $i from 1 through 30 
+            { 
+                $j: $i + 1;
+    
+                &:nth-child(#{$i})::before {content: '#{$j}';} 
+            } 
+        }
+
+        & + ul.bul1.box1 li + li .txt2 {display: block; margin-top: 0.5rem;}
+    }
+
+    &.type2 > li
+    {
+        @for $i from 1 through 30 
+        { 
+            $j: $i + 2;
+
+            &:nth-child(#{$i})::before {content: '#{$j}';} 
+        } 
+    }
+
+    &.type3 > li
+    {
+        @for $i from 1 through 30 
+        { 
+            $j: $i + 3;
+
+            &:nth-child(#{$i})::before {content: '#{$j}';} 
+        } 
+    }
+
+    &.type4 > li
+    {
+        @for $i from 1 through 30 
+        { 
+            $j: $i + 4;
+
+            &:nth-child(#{$i})::before {content: '#{$j}';} 
+        } 
+    }
+
+    &.type5 > li
+    {
+        @for $i from 1 through 30 
+        { 
+            $j: $i + 5;
+
+            &:nth-child(#{$i})::before {content: '#{$j}';} 
+        } 
+    }
+
+    & + .box1 {padding: 5rem 6.5rem;}
+    & + .box2.type1 {margin-top: 1.5rem;}
+}
+
+// 블릿3
+.bul3 
+{
+    & > li::before {border-radius: 0.2rem;}
+
+    &.box1
+    {
+        & > li
+        {
+            &::before {background-color: #999;}
+            &:last-child .bul1 {margin-bottom: 0;}
+        }
+
+        .bul1 {margin: 1rem 0;}
+    }
+}
+
+// 블릿4
+.bul4
+{
+    margin: 0.5rem 0;
+
+    & > li
+    {
+        @include bul(1.2rem);
+    
+        &::before {top: 1.25rem; width: 0.5rem; height: 1px; background-color: #000;}
+    }
+}
+
+// 박스
+[class*="box"]
+{
+    &:first-child {margin-top: 0;}
+    &:last-child {margin-bottom: 0;}
+}
+
+// 박스이미지
+.box_img 
+{
+    display: block; margin-bottom: 1.5rem; padding: 4rem; border: 1px solid #DEDEDE; text-align: center;
+
+    img
+    {
+        &[src*="cignature1"] {margin: 15rem auto;}
+        &[src*="character"] {margin: 5rem auto;}
+    }
+
+    span {display: block; margin-top: 2.5rem;}
+}
+
+// 박스1
+.box1 
+{
+    margin: 1rem 0; padding: 3rem; background-color: #F4F4F4;
+
+    &.type1 
+    {
+        padding: 5rem 5rem 4.5rem; border: 1px solid #DEDEDE; background-color: #fff;
+
+        &.bul2 .bul1 {margin: 0.5rem 0 0.5rem -3rem;}
+    }
+
+    &.type2
+    {
+        display: flex; margin-top: 3rem; align-items: center;
+
+        & > i {@include square(8rem); border-radius: 100%; background-color: #fff;}
+        img {max-width: 4rem; max-height: 4rem;}
+        p {width: calc(100% - 28rem); padding: 1rem 2rem;}
+
+        .btn_type1 {width: 22rem; flex-grow: 1;}
+    }
+
+    &.bul2 + .step2 {margin-top: 4rem;}
+}
+
+.depth4_tab.type1 + .box1.type1 > h2.title1:first-child + p small {position: relative; top: -0.25rem; margin-right: 0.25rem; font-size: 1.2rem;}
+
+// 박스2
+.box2
+{
+    position: relative; margin: 0.5rem 0; padding: 1.5rem 3rem 1.5rem 6rem; border-radius: 0.3rem; border: 1px solid #D8D8D8; background-color: #F4F4F4;
+
+    &::before {@include icon(type2, ''); left: 3rem; top: auto; color: #CD4848;}
+    & + p {margin-top: 2rem;}
+
+    &.type1 
+    {
+        background-color: #fff;
+
+        small {display: inline-block; position: relative; top: -0.1rem; margin: 0 0.25rem; font-size: 1rem; vertical-align: middle;}
+    }
+}
+
+// 박스3
+.box3
+{
+    display: flex; padding: 5rem 5rem 5rem 5.5rem; border-radius: 0.3rem; background-color: #F6F7F9;
+
+    i {width: 12rem; min-width: 12rem; max-width: 12rem; text-align: center;}
+    img[src*="icon2_6"] {margin-top: 2.5rem;}
+    
+    .desc {margin-left: 4.5rem; color: #6A6A6A; line-height: 3.1rem;}
+    .title3 {font-weight: 700;}
+
+    & + .table1 {margin-top: 5.5rem;}
+    & + ul.box6.type3 {margin-top: 5rem;}
+    & + p.box2.type1 {margin-top: 3rem;}
+
+    & + .board_info {margin-top: 4rem;}
+}
+
+// 박스4
+.box4
+{
+    @include bg1;
+    overflow: hidden; padding: 7rem 6rem; font-size: 1.9rem; color: #fff;
+
+    i {@include bg2(type2);}
+    img {max-width: inherit; min-width: 100%; min-height: 100%;}
+
+    strong 
+    {
+        @include width(99rem, 100%);
+        display: block; overflow: hidden; height: 5rem; margin: 1rem 0 0 !important; font-size: 5.1rem; line-height: 5rem; white-space: nowrap;
+
+        &::after {display: inline-block; width: 58rem; height: 1px; margin-left: 2.5rem; background-color: #fff; content: ''; opacity: 0.4; vertical-align: middle;}
+    }
+}
+
+// 박스5
+.box5
+{
+    @include bg1;
+    overflow: hidden; padding-top: 29.5rem;
+
+    i {@include bg2(type2); overflow: hidden; height: calc(100% - 10rem);}
+    img {@include position(center); max-width: inherit; min-width: 100%; min-height: 100%;}
+
+    .group 
+    {
+        float: right; width: 85rem; max-width: calc(100% - 4rem); padding: 4rem 5rem; background-color: #fff;
+
+        strong 
+        {
+            display: block; width: calc(100% + 5rem); margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid #E4E4E4; font-size: 5rem; font-weight: 700; color: #3E3E3E; line-height: 6.5rem;
+
+            &:last-child {border-bottom: 0 none;}
+        }
+    }
+
+    &.type1
+    {
+        i {max-height: 46.5rem;}
+
+        .group
+        {      
+            width: 68.5rem; padding-bottom: 0; word-break: keep-all;
+
+            & + p {clear: both; padding: 6rem 0 1rem; border-top: 1px solid #E4E4E4;}
+        }  
+    }
+}
+
+// 박스6
+.box6
+{
+    position: relative; margin: 1.5rem 0; padding: 7rem 7rem 7rem 20rem; border-radius: 0.5rem; border: 1px solid #EBEBEB; letter-spacing: -0.05rem; word-break: keep-all;
+
+    i 
+    {
+        @include square(10rem); 
+        position: absolute; left: 6rem; top: 7.5rem; border-radius: 100%; background-color: #F3F3F3;
+
+        & + .title2 {margin-top: 0;}
+        & + .title3 {margin-top: 1rem;}
+    }    
+}
+
+// 박스6 타입1
+div.box6.type1 
+{
+    min-height: 19rem; padding: 4.5rem 4.5rem 4.5rem 16rem; border-width: 0.2rem;
+
+    i {top: 4.5rem; left: 3.5rem;}
+
+    &.type2
+    {
+        padding-left: 19rem; padding-right: 30rem; border: 0 none; background-color: #F9F9F9;
+
+        i {left: 6rem; background-color: #fff;}
+
+        .btn_type1 
+        {
+            @include position(top); 
+            right: 7.5rem; border: 0 none;
+            
+            i {width: auto; height: auto; position: static; background: none; line-height: inherit;}
+
+            &:hover, &:focus {background-color: #000; color: #fff;}
+        }
+    }
+}
+
+// 박스6이 한 개 이상
+ul.box6
+{
+    display: flex; width: calc(100% + 3rem); margin-bottom: 5rem; padding: 0; border: 0 none;
+
+    & > li {position: relative; min-height: 19rem; margin-right: 3rem; padding: 4.5rem 4rem 4rem 20rem; border-radius: 0.5rem; border: 0.2rem solid #EBEBEB; flex-grow: 1; flex-basis: 1%;}
+
+    i 
+    {
+        top: 4.5rem;
+
+        &:last-child {left: auto; right: 5.5rem;}
+    }
+
+    .pay 
+    {
+        font-size: 2.1rem; font-weight: 600; color: #22449C; white-space: nowrap;
+
+        strong {font-size: 5.1rem;}
+    }
+
+    &.type1 > li {padding: 5rem 20rem 5.5rem 7rem;}
+    &.type2 > li {padding: 4rem 4.5rem;}
+
+    &.type3
+    {
+        i {left: 3.5rem;}
+        .title3 {margin-top: 0;}
+        
+        & > li {padding: 4.5rem 4.5rem 4.5rem 16rem; word-break: keep-all;}
+        & + .box2.type1 {margin: -3rem 0 6.5rem;}
+    }
+
+    &.type4
+    {
+        margin-top: 6rem; flex-wrap: wrap;
+
+        li 
+        {
+            min-width: calc(50% - 3rem); max-width: calc(50% - 3rem);
+
+            &:nth-child(n+3) {margin-top: 3rem;}
+        }
+    }
+
+    &.type5
+    {
+        & > li 
+        {
+            padding: 5rem; text-align: center;
+
+            & > i 
+            {
+                display: block; position: static; margin: 0 auto 2.5rem;
+
+                &[class*="xi-"] {font-size: 5rem; color: #fff;}
+
+                &.xi-youtube-play {background-color: #D2272C;}
+                &.xi-instagram {background: linear-gradient(180deg, #4D5BA6 0%, #844F9B 23.5%, #DA4470 48.5%, #DF7542 75%, #E8BE5E 100%);}
+                &.xi-facebook {background-color: #455E99;}
+
+                &.naver {background-color: #32B24A;}
+            }
+        }
+
+        .btn_type1 i {right: auto; top: auto; width: auto; height: auto; background: none; line-height: inherit;}
+    }
+
+    &.type6
+    {
+        width: calc(100% + 2rem); flex-wrap: wrap;
+
+        .title3 {margin-bottom: 2.5rem; line-height: 170%;}
+
+        & > li 
+        {
+            margin-right: 2rem; padding: 3.5rem 4rem; flex-basis: calc(33.333% - 2rem); flex-grow: 0;
+
+            &:nth-child(n+4) {margin-top: 2.5rem;}
+        }
+
+        .btn_type1[href*="/menu.es?mid=a109040"] {margin-top: -1rem;}
+    }
+}
+
+// 박스7
+.box7
+{
+    display: flex; margin-bottom: 10rem; padding: 4rem; border-radius: 0.5rem; background-color: #F5F5F5; word-break: keep-all;
+
+    & > * {flex-grow: 1;}
+
+    i 
+    {
+        position: relative; min-width: 45rem; max-width: 45rem;
+        
+        img {@include position(left); top: 0;}
+    }
+
+    .group 
+    {
+        padding: 3rem 3rem 3rem 5rem;
+
+        &:first-child {padding-left: 3rem;}
+    }
+
+    &.type1
+    {
+        position: relative; top: 6rem; margin-bottom: 6rem; padding: 0; background: none;
+
+        .gallery 
+        {
+            overflow: hidden; position: absolute; left: 5rem; bottom: 9.5rem; z-index: 0; min-width: 56rem; max-width: 56rem; max-height: calc(100% - 3.5rem);
+    
+            & + .group {margin-bottom: 4.5rem; padding: 3.5rem 2rem 6rem 67.5rem; border-radius: 0.5rem; background-color: #F5F5F5;}
+        }
+
+        .swiper-initialized
+        {
+            overflow: hidden;
+
+            & > * 
+            {
+                display: flex; overflow: visible !important;
+
+                & > * {display: flex; flex-shrink: 0;}
+            }
+
+            &.swiper-vertical
+            {
+                & > * {flex-direction: column;}
+
+                [role="group"] {overflow: hidden; max-height: 100%; text-align: center; justify-content: center; align-items: center;}
+            }
+
+            .swiper-pagination-bullets {display: block;}
+        }
+
+        .control {position: absolute; right: 0; bottom: 0; z-index: 999; height: 5rem; padding: 0 1.5rem 0 2.5rem; background-color: rgba(0, 0, 0, 0.5); color: #fff; line-height: 5rem;}
+        .pager {display: inline; width: auto;}
+
+        .btns 
+        {
+            margin-left: 1rem;
+
+            button 
+            {
+                @include square(2.5rem); 
+                border-radius: 100%; transition: $time2;
+
+                &:hover, &:focus {background-color: #000;}
+            }
+
+            .play, .stop {display: none;}
+            .active {display: inline-block;}
+
+            $icons: (prev: '\EA64', next: '\EA6E', play: '\F00A', stop: '\EFD8');
+
+            @each $keys, $icon in $icons { .#{$keys}::before {@include icon(type3, $icon); font-family: $icon1;} }
+        }
+    }
+}
+
+// 박스8(행정서비스헌장)
+.box8
+{
+    @include bg1;
+    padding: 13rem; border: 0.6rem solid #E5EBF8; text-align: center; word-break: keep-all;
+
+    &::before {@include position(center); z-index: -1; width: calc(100% - 2.5rem); height: calc(100% - 2.5rem); border: 0.2rem solid #E5EBF8; content: '';}
+    
+    .group, h2
+    {
+        &::before, &::after {position: absolute; width: 9.7rem; height: 9.7rem; background: url('../../template01/img/contents/box8.png') no-repeat; background-size: 100% auto; content: '';}
+
+        &::before {left: 2.5rem;}
+        &::after {right: 2.5rem;}
+    }
+
+    .group 
+    {
+        @include width(105.5rem, 100%);
+
+        &::before, &::after {bottom: 2.5rem;}
+        &::before {transform: rotate(270deg);}
+        &::after {transform: rotate(180deg);}
+    }
+
+    h2 
+    {
+        font-size: 4.3rem; font-weight: 700; color: #3E3E3E;
+
+        &::before, &::after {top: 2.5rem;}
+        &::after {transform: rotate(90deg);}
+    }
+    
+    p {margin: 2.5rem 0 6rem;}
+    strong {@include width(55rem, 100%); display: block; margin-top: 5.5rem; font-size: 1.9rem; color: #2D2D2D;}
+
+    li
+    {
+        display: flex; position: relative; min-height: 7.5rem; padding: 0 3rem 0 9rem; border-radius: 7.5rem; background-color: #F4F6FE; text-align: left; align-items: center;
+
+        &::before {@include position(top); @include square(4.5rem); left: 2rem; border-radius: 100%; background-color: #232EA3; font-size: 1.7rem; font-weight: 700; color: #fff; content: '01';}
+        
+        &:nth-child(2n) 
+        {
+            background-color: #fff;
+
+            &::before {background-color: #5189DD;}
+        }
+    }
+
+    .type1 li
+    {
+        margin: 0 -4.5rem;
+
+        @for $i from 1 through 9
+        { &:nth-child(#{$i}):before {content: '0#{$i}';} }
+    }
+
+    // 명예의 전당
+    &.type1
+    {
+        margin-top: 5.5rem; padding: 9rem 7rem;
+
+        &::before {width: calc(100% - 1.2rem); height: calc(100% - 1.2rem);}
+
+        h2
+        {
+            font-size: 5.1rem; line-height: 1.3;
+
+            &::before, &::after {display: none;}
+            
+            span 
+            {
+                display: block; font-size: 2.8rem; color: #1B5B8E;
+
+                &::before, &::after {margin: 0 1rem; color: #FAA61A; content: '★';}
+            }
+        }
+        
+        .related
+        {
+            margin-top: 5rem;
+
+            li 
+            {
+                min-height: 11rem; padding: 0; border-color: #DAE0ED; background: none; flex-wrap: wrap;
+
+                &::before {display: none;}
+            }
+
+            i {width: 100%; height: 13rem; padding: 1.5rem;}
+            p {display: flex; width: 100%; min-height: 8.25rem; margin: 0; justify-content: center; align-items: center; flex-wrap: wrap;}
+            strong {width: 20rem; margin-top: 0; line-height: 145%;}
+            span {@include width(22rem, 100%); display: block; margin-top: 0.5rem; border-color: #DAE0ED; font-size: 1.7rem; line-height: 1.2;}
+            small {margin-left: 0.5rem; font-size: $size; color: #1B5B8E;}
+        }
+    }
+}
+
+// 박스8(명예의 전당)
+.box9 {display: flex; height: 25rem; margin-top: 5rem; padding: 3rem; background: url('../../template01/img/contents/box9.jpg') no-repeat center center / cover; font-size: 4.2rem; font-weight: 600; color: #fff; line-height: 1; text-align: center; justify-content: center; align-items: center; word-break: keep-all;}
+
+// 리스트1
+.list1
+{
+    display: flex; width: calc(100% + 3rem); word-break: keep-all;
+
+    & > li {margin-right: 3rem; flex-grow: 1; flex-basis: 1%;}
+
+    .group 
+    {
+        display: flex; min-height: 17rem; padding: 4rem 4.5rem; border-radius: 0.5rem; background-color: #F5F5F5; align-items: center;
+
+        & > i
+        {
+            min-width: 9rem; max-width: 9rem;
+    
+            & + .title3 {margin: 0 5.5rem 0 2.5rem;}
+        }
+
+        &.qr .label {padding: 0 5.5rem 0 2.5rem;}
+    }
+
+    .label {font-size: 2.1rem; color: #3E3E3E;}
+    .item {display: flex; height: 8rem; margin-left: 4.5rem; padding-left: 4.5rem; border-left: 1px solid #C0C0C0; align-items: center;}
+    
+    .btns
+    {
+        min-width: 20rem; max-width: 20rem;
+
+        .btn_type1 {margin: 0;}
+    }
+}
+
+// 리스트2
+.list2
+{
+    display: flex; width: calc(100% + 2rem);
+
+    & > li 
+    {
+        position: relative; margin-right: 2rem; padding-bottom: 1rem; flex-grow: 1; flex-basis: 1%;
+
+        &::after {position: absolute; left: 0; bottom: 0; z-index: -1; width: 100%; height: 50%; border-radius: 0 0 0.5rem 0.5rem; border: 1px solid #DEDEDE; border-top: 0 none; content: '';}
+    }
+
+    .group {padding: 6rem 6rem 5rem; border-radius: 0.5rem 0.5rem 0 0; border: 1px solid #DEDEDE; border-bottom: 0 none;}
+    
+    .table1 
+    {
+        font-weight: 400; color: #6A6A6A;
+
+        th {font-weight: 500;}
+        th, td {height: 7rem; padding: 1.5rem 1rem; line-height: 140%;}
+        tbody th {background-color: #F6F6F6;}
+
+        & + .table1 {margin-top: 3rem;}
+    }
+
+    &.type1
+    {
+        & > li, .group {border-width: 0.2rem;}
+
+        .group 
+        {
+            padding: 4rem 4rem 4.5rem; text-align: center;
+
+            & > i 
+            {
+                display: block; height: 13.5rem; margin-bottom: 3rem; line-height: 13.5rem;
+
+                img {max-height: 100%;}
+            }
+        }
+    }
+}
+
+// 리스트3
+.list3
+{
+    display: flex; width: calc(100% + 1.5rem); margin-top: 2rem; flex-wrap: wrap;
+
+    li 
+    {
+        display: flex; flex-basis: calc(50% - 1.5rem); margin-right: 1.5rem; padding: 1.5rem 2.5rem; border-radius: 0.5rem; border: 1px solid #D8D8D8; align-items: center;
+
+        &+:nth-child(n+3) {margin-top: 2rem;}
+    }
+
+    .title3 {margin: 0; width: calc(100% - 9.5rem);}
+    .btn_type2 {width: 9.5rem; flex-grow: 1; margin: 0; padding: 0; text-align: center;}
+}
+
+// 리스트4
+.list4
+{
+    display: flex;
+
+    li 
+    {
+        padding: 5.5rem 1rem; box-shadow: 0 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.05); border-radius: 1rem; border: 1px solid #E2E2E2; text-align: center; flex: 1 1;
+
+        & + li {margin-left: 1.5rem;}
+    }
+
+    .title3 {margin: 2rem 0 0;}
+}
+
+// 리스트5(찾아오시는 길)
+.list5
+{
+    & > li 
+    {
+        padding: 3rem 0; border-bottom: 1px solid #DADADA;
+
+        &:first-child {padding-top: 0;}
+    }
+
+    strong 
+    {
+        position: relative; padding-left: 2.5rem; font-size: 2.1rem; font-weight: 600; color: #3E3E3E;
+
+        &::before {@include icon(type2, '\EF13'); left: 0; font-family: $icon1; font-weight: 400;}
+    }
+
+    span 
+    {
+        display: inline-block; position: relative; top: -0.1rem; height: 1.6rem; margin-left: 1.5rem; padding-left: 1.5rem; border-left: 1px solid #000; vertical-align: middle; line-height: 1.6rem;
+
+        &::before {@include icon(type1, '\F20F'); position: relative; top: -0.2rem; margin-right: 0.5rem; font-family: $icon1; font-size: 2.1rem; color: #000;}
+    }
+
+    &:last-child > li:last-child {padding-bottom: 0; border-bottom: 0 none;}    
+
+    & + .bul1 
+    {
+        margin-top: 4rem;
+
+        &:last-child {margin-bottom: 4rem;}
+    }
+}
+
+// 리스트
+.list_img1
+{
+    display: flex; width: calc(100% + 2.5rem); margin-bottom: 3rem; text-align: center;
+
+    li {margin-right: 2.5rem; flex-grow: 1; flex-basis: 1%;}
+    & + .btns > .btn_type1 {margin: 0;}
+
+    .symbol, .box_img {margin-bottom: 0;}
+    
+    .title2 
+    {
+        margin-top: 3rem;
+
+        & + .box_img 
+        {
+            display: flex; min-height: 26rem; padding: 5rem 3rem; justify-content: center; align-items: center; flex-wrap: wrap;
+
+            span {display: block; width: 100%;}
+
+            img
+            {
+                &[src*="logotype1_1"] 
+                {
+                    margin-top: 2.5rem;
+
+                    & + span {margin-bottom: 3.5rem;}
+                }
+                
+                &[src*="logotype1_2"] {margin: 2.5rem auto 9rem;}
+                &[src*="logotype2_"] {margin-top: 2rem;}
+            }
+        }
+    }
+}
+
+// 리스트(이미지2)
+.list_img2
+{
+    @include list(type2, 2rem, 2.5rem, 2);
+    margin-top: 5rem;
+
+    li {padding: 2.5rem; border: 1px solid #ddd; text-align: center;}
+    i {display: block;}
+    .title3:last-child {margin: 2.5rem 0 0;}
+
+    &.type1 
+    {
+        @include list(type2, 2rem, 2.5rem, 4);
+
+        & > *:nth-child(3) {margin-top: 0;}
+    }
+}
+
+div.list_img2
+{
+    display: block; width: 100%; margin: 0; padding: 2.5rem; border: 1px solid #ddd; text-align: center;
+
+    .title3 {width: 100%;}
+
+    &.type1
+    {
+        max-width: 100%; margin-top: 1.25rem; padding: 5rem 4rem; text-align: center;
+
+        & > * {width: auto; margin-right: 0; padding: 0 0.5rem; flex: 1 1;}
+    }
+
+    &.type2 
+    {
+        display: block;
+
+        & > i {display: inline-block; max-width: calc(33.333% - 1.5rem); margin: 0 0.5rem; padding: 0; vertical-align: middle;}
+    }
+}
+
+// 아이콘
+.icon_link
+{
+    font-size: 1.7rem; font-weight: 500; color: #2F57BF; text-decoration: underline;
+
+    &::after {@include icon(type1, '\ECAF'); margin-left: 0.25rem; font-family: $icon1; font-size: 1.8rem; font-weight: 500; color: #000;}
+}
+
+// 텍스트1
+.txt1
+{
+    position: relative; padding-left: 2.5rem;
+
+    &::before {@include icon(type2, ''); left: 0; top: auto; color: #CD4848;}
+}   
+
+// 텍스트
+.txt2 {color: #474747;}
+.txt3 {color: #DE2626;}
+
+// 이미지
+.img1 
+{
+    display: block; overflow: hidden; margin-top: 13rem; border-radius: 1rem;
+
+    &:first-child {margin-top: 0;}
+}
+
+// 절차1
+.step1
+{
+    @include bg1;
+    overflow: hidden; width: calc(100% + 8rem); margin-bottom: -3.5rem; word-break: keep-all;
+
+    li 
+    {
+        float: left; position: relative; width: calc(25% - 8rem); min-height: 33rem; margin: 0 8rem 8.5rem 0; padding: 4.5rem 0.5rem; border-radius: 0.5rem; border: 1px solid #D8D8D8; text-align: center;
+
+        &::after {@include position(top); left: 100%; width: 8rem; height: 1px; background-color: #D8D8D8; color: #33363B; text-align: center; font-family: $icon2; line-height: 0.2rem; content: '';}
+        &:nth-child(n+5) {float: right; min-height: 0;}
+
+        &:nth-child(4n)
+        {
+            &::after {display: none;}
+
+            & + li::after {top: auto; left: 50%; bottom: 100%; width: 1px; height: 8.5rem; text-indent: -0.8rem; content: ''; line-height: 8.5rem; transform: translateX(-50%);}
+        }
+        
+        $colors: (#458CE0, #3261BD, #2A4BA6, #1D4199, #11368B, #153074, #192B5D, #1B2546);
+
+        @each $color in $colors
+        {
+            $i: index($colors, $color);
+
+            &:nth-child(#{$i}) span {background-color: $color;}
+        }
+
+        &:nth-child(3):last-child::after {display: none;}
+    }
+    
+    i {display: block; width: 10rem; height: 10rem; margin: 1.5rem auto 2rem; border-radius: 100%; background-color: #F3F3F3; text-align: center; line-height: 10rem;}
+    img {max-width: 4.5rem;}
+    span {display: inline-block; width: 9rem; height: 3rem; border-radius: 3rem; font-size: $size; font-weight: 600; color: #fff; line-height: 3rem; vertical-align: middle;}
+
+    strong 
+    {
+        display: block; margin-bottom: 0.5rem; font-size: 1.9rem; font-weight: 600; color: #3E3E3E;
+
+        &:last-child {margin-bottom: 0;}
+    }
+
+    &.type1
+    {
+        display: inline-block; overflow: visible; width: calc(100% + 6rem); margin-top: 2rem; vertical-align: top;
+
+        li 
+        {
+            width: calc(20% - 6rem); min-height: 0 !important; margin-right: 6rem;
+
+            &::after {width: 6rem;}
+
+            &:nth-child(4n)
+            {
+                &::after {display: block;}
+                & + li::after {display: none;}
+            }
+        }
+        
+        span {@include position(left); top: -1.5rem;}
+        i {margin: 0 auto 1rem; background: none;}
+
+        p 
+        {
+            height: 3rem;
+
+            &.type1 {height: 6.5rem;}
+        }
+    }
+
+    &.type2
+    {
+        width: calc(100% + 10rem);
+
+        li 
+        {
+            width: calc(33.333% - 10rem); margin-right: 10rem; padding-top: 4rem;
+
+            &::after {width: 10rem;}
+            &:nth-child(n+4) {float: right;}
+            &:nth-child(4n)::after {left: auto; right: 100%;}
+            &:nth-child(3)::after {top: auto; left: 50%; top: 100%; width: 1px; height: 8.5rem; text-indent: -0.8rem; content: ''; line-height: 8.5rem; transform: translateX(-50%);}
+        }
+
+        i {margin-bottom: 1rem;}
+    }
+
+    &.type3
+    {
+        width: calc(100% + 15rem);
+
+        li 
+        {
+            width: calc(25% - 15rem); margin-right: 15rem;
+
+            &::after {width: 15rem;}
+            &:last-child::after {display: none;}
+        }
+
+        .icon_link 
+        {
+            display: block; margin-top: -0.25rem; font-size: 1.2rem; line-height: 1; word-break: break-all;
+
+            & + br {display: none;}
+        }
+    }
+}
+
+// 절차2
+.step2
+{
+    margin-bottom: 3.5rem; border-top: 0.2rem solid #3C3C3C;
+
+    & > li
+    {
+        display: flex; position: relative; min-height: 16.5rem; padding: 3.5rem 0 2.5rem 19rem; border-bottom: 1px solid #DADADA; align-items: center; flex-wrap: wrap;
+
+        & > * {width: 100%;}
+        &::before, .count {@include square(9rem); position: absolute; top: 3.5rem; left: 4.5rem; border-radius: 100%; background-color: #F5F5F5; font-size: 2.4rem; font-weight: 500; color: #3E3E3E;}
+
+        @for $i from 1 through 15 { &:nth-child(#{$i})::before {content: '#{$i}';} }
+
+        .count:first-child + h3.title2 {margin-top: 2.5rem;}
+        .btns:last-child .btn_type1 {margin-bottom: 3rem;}
+    }
+
+    & + .box2 + .btns
+    {
+        overflow: hidden; margin-top: 3rem;
+
+        i {float: right;}
+    }
+
+    .box_img {margin: 3rem 0 4rem;}
+    .title3:first-child {margin-bottom: 0;}
+    .title2 + * {margin-top: 0;}
+}
+
+// 절차3
+.step3
+{
+    display: flex; margin: 5.5rem 0 1.5rem; word-break: keep-all;
+
+    li 
+    {
+        position: relative; padding-bottom: 6rem; border-radius: 0.5rem; border: 1px solid #D8D8D8; text-align: center; flex-grow: 1; flex-basis: 1%;
+
+        &::after {@include position(left); @include square(4rem); top: -2rem; border-radius: 100%; font-size: 1.7rem; font-weight: 600; color: #fff;}
+
+        & + li 
+        {
+            margin-left: 8rem;
+
+            &::before {@include icon(type2, ''); @include position(top); @include square(3.5rem); left: -4rem; border-radius: 100%; border: 1px solid #D8D8D8; background-color: #fff; color: #3E3E3E; transform: translate(-50%, -50%);}
+        }
+
+        $colors: (#458CE0, #3261BD, #2A4BA6, #1D4199, #11368B, #153074, #192B5D, #1B2546);
+
+        @each $color in $colors
+        {
+            $i: index($colors, $color);
+
+            &:nth-child(#{$i})
+            {
+                &.active {border-color: $color;}
+                &::after {background-color: $color; content: '0#{$i}';}
+            }
+        }
+
+        & > span {display: flex; position: absolute; left: 0; bottom: 0; width: 100%; height: 6rem; border-top: 1px dashed #D8D8D8; justify-content: center; align-items: center;}
+    }
+
+    strong {display: flex; min-height: 18rem; padding: 3rem 0 1rem; font-size: 1.7rem; font-weight: 600; justify-content: center; align-items: center;}
+    p {display: flex; height: 16rem; margin-bottom: -6rem; padding: 5rem 1rem 4rem; justify-content: center; align-items: center; word-break: keep-all;}
+
+    &.type1
+    {
+        li 
+        {
+            padding-bottom: 0;
+
+            & > span {position: static; min-height: 16rem; padding: 1rem; word-break: keep-all;}
+        }
+
+        strong {min-height: 8rem;}
+
+        .icon_link {display: block; font-size: 1.4rem;}
+    }
+
+    &.type2
+    {
+        display: inline-block; width: 100%; vertical-align: top;
+
+        li 
+        {
+            float: left; width: calc(25% - 6rem);
+
+            &:nth-child(n+5) 
+            {
+                float: right; margin-top: 11rem;
+
+                &::before {left: auto; right: -8rem; content: '';}
+            }
+            
+            &:nth-child(5)::before {top: -6.5rem; right: auto; left: 50%; content: '';}
+            &:last-child {margin-left: 0;}
+        }
+    }
+
+    & + ul.bul2.box1, & + p.box2 {margin-top: 4rem;}
+
+    &.type3
+    {
+        margin-top: 1rem;
+
+        li
+        {
+            width: calc(20% - 6.4rem);
+
+            &:nth-child(5) 
+            {
+                float: left; margin-top: 0;
+
+                &::before {top: 50%; left: -4rem; right: auto; content: '';}
+            }
+            
+            &:nth-child(n+6) 
+            {
+                float: right; margin-top: 10rem;
+
+                &::before {content: '';}
+            }
+
+            &:nth-child(n+2):nth-child(5n+1)::before {top: -6.5rem; right: auto; left: 50%; content: '';}
+
+            &:nth-child(n+11) 
+            {
+                float: left;
+
+                &::before {right: auto; left: -4rem; content: '';}
+            }
+            
+            &:nth-child(10), &:nth-child(11) {margin-left: 0;}
+            &:last-child {margin-left: 8rem;}
+
+            & > span {min-height: 9.5rem;}
+
+            $colors: (#458CE0, #3261BD, #395FC9, #375ABC, #2A4BA6, #2244A0, #193B9A, #153797, #1138A1, #11368B, #0D3081, #0A2563, #1B2546);
+
+            @each $color in $colors
+            {
+                $i: index($colors, $color);
+
+                @if $i > 9 { &:nth-child(#{$i})::after {background-color: $color; content: '#{$i}';} }
+                @else { &:nth-child(#{$i})::after {background-color: $color; content: '0#{$i}';} }
+            }
+        }
+    }
+
+    &.noarr li + li::before {display: none;}
+}
+
+// 절차4
+.step4
+{
+    display: flex; margin-bottom: 2rem; padding: 3.5rem; border: 1px solid #DEDEDE;
+
+    li
+    {
+        display: flex; position: relative; height: 7rem; padding: 0 1rem; border-radius: 7rem; color: #fff; text-align: center; justify-content: center; align-items: center; flex-grow: 1; flex-basis: 1%; word-break: keep-all; line-height: 1.2;
+
+        & + li 
+        {
+            margin-left: 10rem;
+
+            &::before {@include icon(type2, ''); @include position(top); @include square(3rem); left: -5rem; border-radius: 100%; border: 1px solid #DFDFDF; color: #000; text-indent: 0.25rem; transform: translate(-50%, -50%);}
+        }
+
+        $colors: (#458CE0, #3261BD, #2A4BA6, #1D4199, #11368B, #153074, #102761);
+
+        @each $color in $colors
+        {
+            $i :index($colors, $color);
+
+            &:nth-child(#{$i}) {background-color: $color;}
+        }
+    }
+
+    &.type1 li + li 
+    {
+        margin-left: 5rem;
+
+        &::before {left: -2.5rem;}
+    }
+}
+
+// 절차5
+.step5
+{
+    display: flex; padding: 7.5rem 7rem; border-radius: 0.5rem; background-color: #F6F7F9; word-break: keep-all;
+
+    li 
+    {
+        position: relative; padding-left: 9rem; flex-grow: 1; flex-basis: 1%;
+
+        & + li 
+        {
+            margin-left: 13.5rem;
+
+            &::before {@include icon(type2, ''); @include position(top); @include square(2.5rem); left: -8rem; border-radius: 100%; background-color: #fff; color: #3E3E3E;}
+        }
+    }
+
+    i {position: absolute; top: 0; left: 0; width: 5.5rem;}
+    span {font-size: 1.7rem; font-weight: 600; color: #22449C;}
+    strong {display: block; font-size: 2.5rem; font-weight: 600; color: #3E3E3E;}
+
+    & + p.box2.type1 {margin-top: 2.5rem;}
+}
+
+// 버튼
+.btns
+{
+    & > .btn_type1 {margin: 2rem 0 5rem;}
+    &:last-child > .btn_type1 {margin-bottom: 0;}
+}
+
+// 버튼
+[class*="btn_type"]
+{
+    margin: 0.5rem 0.25rem;  border-radius: 0.3rem; font-weight: 500; transition: $time2;
+    
+    &:first-child {margin-left: 0;}
+    &:last-child {margin-right: 0;}
+    &:hover, &:focus {background-color: #EFEFEF;}
+}
+
+// 버튼1
+.btn_type1
+{
+    @include btn(5.5rem, 0 2.5rem, 1px, #D3D3D3, #fff, 1.8rem, #000);
+
+    i, img {display: inline-block; position: relative; top: -0.1rem; font-size: 2rem; vertical-align: middle;}
+    i {position: static; width: auto; height: auto; margin-left: 2rem; border-radius: 0; background: none; line-height: inherit;}
+    img {margin-right: 1rem;}
+
+    // 파란색
+    &.type1 
+    {
+        border-color: #22449C; background-color: #22449C; color: #fff;
+
+        &:hover, &:focus {border-color: #132F75; background-color: #132F75;}
+    }
+
+    // 빨간색
+    &.type2
+    {
+        border-color: #CB1616; color: #CB1616;
+
+        &:hover, &:focus {background-color: #CB1616; color: #fff;}
+    }
+
+    &.type3 
+    {
+        position: relative; padding: 0.75rem 6rem 0.75rem 2.5rem; line-height: 1.25; text-align: left;
+
+        i {@include position(top); right: 2rem;}
+    }
+}
+
+br + .btn_type1.type3 {margin-top: 2rem;}
+
+// 버튼2
+.btn_type2 {@include btn(4.3rem, 0 2rem, 1px, #D3D3D3, #fff, $size, #000);}
+
+// 테이블1
+.table1
+{
+    overflow: hidden; overflow-x: auto; margin: 2rem 0; border-top: 0.2rem solid #000; font-weight: 500; text-align: center; word-break: keep-all;
+
+    &:first-child {margin-top: 0;}
+    &:last-child {margin-bottom: 0;}
+
+    table {position: relative; left: -1px;}
+    small {display: block; line-height: 1.5;}
+    
+    th 
+    {
+        padding: 2rem; border-bottom: 1px solid #ddd; border-left: 1px solid #ddd;
+
+        small {font-weight: 500; white-space: nowrap;}
+    }
+    
+    td 
+    {
+        padding: 2rem 1rem; border-bottom: 1px solid #ddd; border-left: 1px solid #ddd;
+
+        &.txt_left
+        {
+            & > strong.txt2 
+            {
+                display: block; margin: 1rem 0 0;
+    
+                &:first-child {margin: 0 0 1rem;}
+            }
+
+            & > .bul2 + .txt2 {margin: 2rem 0 1rem;}
+        }
+        
+        small {font-weight: 300;}
+    }
+    
+    thead
+    {
+        th {border-bottom: 1px solid #AFAFAF; background-color: #F6F6F6; color: #000;}
+        
+        .type1 {border-bottom-color: #ddd;}
+    }
+
+    tbody
+    {
+        th {color: #000;}
+        .type1 {border-bottom-color: #AFAFAF;}
+
+        tr.type1 { th, td {border-bottom-color: #AFAFAF;} }
+    }
+
+    tfoot
+    {
+        position: relative; font-weight: 600; color: #000;
+
+        &::before {position: absolute; left: 0; top: 0; width: 100%; height: 1px; background-color: #AFAFAF; content: '';}
+    }
+
+    caption, colgroup
+    {
+        & + tbody th 
+        {
+            width: 23rem; background-color: #F6F6F6; white-space: nowrap;
+    
+            & + td.txt_left {padding-left: 4rem; padding-right: 4rem;}
+        }
+    }
+
+    .bul1, .bul2, .bul4
+    {
+        margin: 0;
+
+        & + * {margin-top: 0.5rem;}
+    }
+
+    * + .bul1, p:first-child + p.txt1 {margin-top: 0.5rem;}
+
+    .txt1 {font-size: $size; line-height: 1.5;}
+    .bul4 {margin-left: 2rem;}
+    .bul1 .bul4 {margin-left: 0;}
+    & + .box6.type1.type2 {margin-top: 4rem;}
+}
+
+.txt_right + .table1 {margin-top: 0;}
+
+// 테이틀2
+.table2
+{
+    overflow: hidden; overflow-x: auto; margin: 1rem 0 2rem; border: 1px solid #ddd; font-size: 1.5rem; line-height: 1.5;
+
+    table {margin-bottom: -1px;}
+    thead th {padding: 0.5rem 1rem; border-left-style: dashed; border-bottom-color: #ddd; font-weight: 600; text-align: center;}
+    td {padding: 1rem; border-left-style: dashed; border-bottom-style: dashed; font-size: 1.4rem; font-weight: 400; text-align: center;}
+
+    li 
+    {
+        @include bul(1rem);
+
+        &::before {content: '·';}
+    }
+}
+
+@media (max-width: 1280px)
+{
+    // 박스1
+    .bul2 + .box1 {padding: 3rem;}
+
+    // 리스트1
+    .list1
+    {
+        .group 
+        {
+            display: block;
+
+            &.qr 
+            {
+                position: relative; padding-left: 16rem;
+                
+                .label {display: block; padding: 0 0 1rem;}
+
+                & > i 
+                {
+                    position: absolute; left: 4rem; top: 4rem;
+
+                    & + .title3 {margin: 0 0 1rem;}
+                }
+            }
+        }
+        
+        .item {height: auto; margin: 2rem 0 0; padding: 1rem 0 0; border: 0 none; border-top: 1px solid #C0C0C0;}
+    }
+
+    // 리스트4
+    .list4
+    {
+        flex-wrap: wrap;
+
+        li 
+        {
+            flex-basis: calc(33.333% - 1rem);
+
+            &:nth-child(4) {margin-left: 0;}
+            &:nth-child(n+4) {margin-top: 1.5rem;}
+        }
+    }
+
+    // 절차1
+    .step1
+    {
+        width: calc(100% + 4rem); margin: 0;
+
+        li 
+        {
+            width: calc(25% - 4rem); min-height: 35.5rem; margin: 0 4rem 4rem 0;
+
+            &::after {width: 4rem;}
+            &:nth-child(4n) + li::after {max-height: 4rem; line-height: 4rem;}
+            &:nth-child(n+5) {min-height: 32rem;}
+        }
+        
+        &.type1 p {height: 5rem;}
+        &.type2 li:nth-child(3)::after {height: 3rem; line-height: 3rem;}
+    }
+
+    // 절차3
+    .step3 p br {display: none;}
+
+    // 절차4
+    .step4
+    {
+        li + li 
+        {
+            margin-left: 3rem;
+    
+            &::before {left: -1.5rem; background-color: #fff;}
+        }
+
+        &, &.type1 {padding: 1.5rem;}
+
+        &.type1 li + li 
+        {
+            margin-left: 1rem;
+
+            &::before {left: -0.5rem; background-color: #fff;}
+        }
+    }
+
+    // 절차5
+    .step5
+    {
+        li + li 
+        {
+            margin-left: 5rem;
+
+            &::before {left: -3.75rem;}
+        }
+    }
+}
+
+@media (max-width: 1024px)
+{
+    // 박스3
+    .box3
+    {
+        padding: 4rem;
+
+        img[src*="icon2_6"] {margin-top: 1rem;}
+        .desc {margin-left: 4rem;}
+    }
+
+    // 박스5
+    .box5 .group strong {font-size: 4rem;}
+
+    // 박스6이 하나 이상일 때
+    ul.box6
+    {
+        & > li {min-height: 15rem; padding: 2.5rem 2.5rem 2.5rem 15rem;}
+        &.type1 > li {padding: 3.5rem 15rem 3.5rem 3rem;}
+
+        i 
+        {
+            left: 2.5rem; top: 2.5rem;
+
+            &:last-child {right: 2.5rem;}
+        }
+
+        .pay strong {font-size: 4rem;}
+
+        &.type3
+        {
+            display: block; width: 100%;
+
+            & > li {margin: 2rem 0 0;}
+
+            .title3 {margin-top: 0;}
+        }
+
+        &.type5
+        {
+            flex-wrap: wrap;
+
+            & > li 
+            {
+                min-width: calc(50% - 3rem);
+
+                &:nth-child(n+3) {margin-top: 3rem;}
+            }
+        }
+    }
+
+    // 박스7
+    .box7.type1
+    {
+        display: block; top: 0; margin: 0;
+
+        .gallery
+        {
+            position: relative; left: auto; bottom: auto; width: 71rem; min-width: 0; max-width: 100%; margin: 0 auto;
+
+            & + .group {margin: -5rem 0 0; padding: 8rem 3rem 3rem;}
+        }
+    }
+
+    // 박스8
+    .box8 
+    {
+        padding: 8rem;
+
+        .group {width: 85rem;}
+    }
+
+    // 리스트5
+    .list5 + .bul1:last-child {margin-bottom: 0;}
+
+    // 테이블1
+    .table1
+    {
+        line-height: 1.25;
+
+        th {padding: 1rem;}
+        td {padding: 1rem 0.5rem;}
+        thead th {height: 5rem; padding: 0.5rem; white-space: nowrap;}
+
+        caption + tbody th 
+        {
+            width: auto;
+
+            & + td.txt_left {padding-left: 1rem; padding-right: 1rem;}
+        }
+    }
+
+    // 절차1
+    .step1
+    {
+        &, &.type1, &.type2
+        {
+            width: calc(100% + 4rem);
+
+            li 
+            {
+                width: calc(33.333% - 4rem); min-height: 0; margin-right: 4rem;
+
+                &::after {width: 4rem;}
+                &:nth-child(3)::after {display: none;}
+                &:nth-child(n+4) {float: right; min-height: 31rem;}
+                
+                &:nth-child(4n)
+                {
+                    &::after {display: block; top: auto; left: 50%; bottom: 100%; width: 1px; height: 4rem; text-indent: -0.8rem; content: ''; line-height: 4rem; transform: translateX(-50%);}
+
+                    & + li::after {display: block; top: 50%; left: 100%; width: 4rem; height: 1px; content: ''; text-indent: 0; line-height: 1px; transform: translateY(-50%);}
+                }
+            }
+        }
+
+        &.type1
+        {
+            margin-bottom: -3rem;
+
+            li 
+            {
+                margin-bottom: 5.5rem;
+
+                &:nth-child(4n)::after {margin-bottom: 1.5rem;}
+            }
+        }
+    }
+
+    // 절차2
+    .step2 > li
+    {
+        .count:first-child + h3.title2 {margin-top: 0;}
+        .btns:last-child .btn_type1 {margin: 0;}
+    }
+
+    // 절차3
+    .step3
+    {
+        &, &.type1.type3.noarr
+        {
+            li + li 
+            {
+                margin-left: 1rem;
+
+                &::before {left: -0.5rem;}
+            }
+        }
+
+        strong {font-size: $size;}
+
+        &.type2
+        {
+            li
+            {
+                width: calc(25% - 0.75rem);
+
+                &:nth-child(n+5)
+                {
+                    margin-top: 4rem;
+
+                    &::before {right: -4rem;}
+                }
+
+                &:nth-child(5)::before {top: -4rem;}
+            }
+
+            &.type3 > li
+            {
+                &:nth-child(n+5) {float: right;}
+                &:nth-child(n+9) {float: left;}
+                &:nth-child(n+13) {float: right;}
+
+                &:nth-child(8), &:nth-child(9), &:nth-child(13) {margin-left: 0;}
+                &:nth-child(10), &:nth-child(11) {margin-left: 1rem;}
+    
+                &:nth-child(n+2):nth-child(5n+1)::before {top: 50%;}
+                &:nth-child(n+2):nth-child(4n+1)::before {left: 50%; top: -4rem; content: '';}
+                &:nth-child(6)::before {right: -4rem !important; left: auto !important; content: '' !important;}
+                &:nth-child(10), &:nth-child(11), &:nth-child(12) { &::before {left: -0.5rem !important; right: auto !important; content: '';} }
+            }
+        }
+    }
+
+    // 절차5
+    .step5
+    {
+        padding: 3rem 5rem 3.5rem;
+
+        i {top: 0.5rem; width: 4rem;}
+        strong {font-size: 2rem;}
+        li {padding-left: 6rem;}
+    }
+
+}
+
+@media (max-width: 768px)
+{
+    // 만족도 조사
+    #satisfy .form_radio {margin-right: 1rem;}
+    
+    //==============================================
+
+    // 박스 이미지
+    .box_img {padding: 10rem 5rem;}
+
+    // 박스3
+    #contents .box3 + .board_info .form 
+    {
+        display: flex;
+
+        .item 
+        {
+            text-align: center; flex-grow: 1;
+
+            &:nth-child(2), &:nth-child(4) {width: 4rem;}
+
+            &.btn 
+            {
+                padding-left: 1rem;
+
+                button {position: static; min-width: 7rem;}
+            }
+
+            .form_textbox[title*="휴대폰번호"] {width: 100%;}
+        }
+    }
+
+    // 박스5
+    .box5
+    {
+        padding-top: 25rem;
+
+        i {height: calc(100% - 7.5rem);}
+        img {height: 100%;}
+
+        .group 
+        {
+            padding: 2.5rem 0 0 3rem;
+
+            strong {width: 100%; margin-bottom: 1.5rem; padding-bottom: 1rem; font-size: 3.5rem; line-height: 130%;}
+        }
+
+        &.type1 i {max-height: 35rem;}
+    }
+
+    // 박스6
+    .box6
+    {
+        padding: 3rem 3rem 3rem 16rem;
+
+        i {left: 3rem; top: 3rem;}
+        img {max-width: 5rem; max-height: 5rem;}
+
+        .title2 {word-break: keep-all;}
+    }
+
+    // 박스6
+    div.box6.type1.type2
+    {
+        padding-right: 4.5rem;
+
+        .btn_type1 {@include position(none); margin: 1.5rem 0 0;}
+    }
+
+    // 박스6 두 개 이상
+    ul.box6
+    {
+        display: block; width: 100%;
+
+        & > li {min-height: 15rem; margin: 0 0 2rem;}
+
+        &.type4 > li 
+        {
+            width: 100%; min-width: 0; max-width: inherit; margin-bottom: 1rem;
+
+            &:nth-child(n+3) {margin-top: 0;}
+        }
+
+        &.type5
+        {
+            display: flex;
+
+            & > li 
+            {
+                margin: 0; padding: 2.5rem;
+
+                &:nth-child(2n) {margin-left: 1rem;}
+                &:nth-child(n+3) {margin-top: 1rem;}
+                & > i {margin-bottom: 2rem;}
+            }
+        }
+
+        &.type6
+        {
+            display: flex;
+
+            & > li 
+            {
+                flex-basis: calc(50% - 2rem); margin: 0 2rem 0 0; padding: 2.5rem 3rem;
+
+                &:nth-child(n+3) {margin-top: 2rem;}
+            }
+        }
+    }
+
+    // 박스7
+    .box7
+    {
+        margin-bottom: 0; padding: 2.5rem;
+
+        i {overflow: hidden; min-width: 25rem; max-width: 25rem;}
+        img {max-width: inherit; min-width: 100%; min-height: 100%;}
+
+        .group 
+        {
+            padding: 1rem 0 0 3rem;
+
+            &:first-child {padding-left: 1rem; padding-right: 3rem;}
+        }
+    }
+
+    // 박스8
+    .box8
+    {
+        padding: 8rem 5rem 5rem;
+
+        strong {font-size: $size;}
+        
+        li 
+        {
+            padding: 1.5rem 3rem 1.5rem 5.5rem; line-height: 1.3;
+
+            &::before {@include square(3.5rem); left: 1rem; font-size: $size;}
+        }
+
+        .type1 li {margin: 0;}
+
+        &.type1 {padding: 5rem 3rem 3rem;}
+    }
+
+    // 박스9
+    .box9 {font-size: 3rem;}
+
+    // 리스트1
+    .list1
+    {
+        display: block; width: 100%; margin: -2rem 0 0;
+
+        & > li {margin: 2rem 0 0;}
+
+        .group 
+        {
+            min-height: 0; padding: 2.5rem;
+
+            &.qr
+            {
+                padding-left: 14rem;
+
+                & > i {left: 2.5rem; top: 2.5rem;}
+            }
+        }
+    }
+
+    // 리스트2
+    .list2
+    {
+        display: block; width: 100%;
+
+        & > li {margin: 2rem 0 0;}
+
+        &.type1
+        {
+            .group
+            {
+                padding: 2rem;
+
+                & > i {margin-bottom: 1rem;}
+            }
+        }
+    }
+
+    // 리스트3
+    .list3
+    {
+        display: block; width: 100%;
+
+        li 
+        {
+            flex-basis: inherit; margin: 0; padding: 1.5rem;
+
+            & + li {margin-top: 1rem !important;}
+        }
+    }
+
+    // 리스트4
+    .list4
+    {
+        li 
+        {
+            flex-basis: calc(50% - 0.75rem);
+
+            &:nth-child(2n+1) {margin-left: 0;}
+            &:nth-child(4) {margin-left: 1.5rem;}
+            &:nth-child(n+3) {margin-top: 1.5rem;}
+        }
+    }
+
+    // 리스트5
+    .list5
+    {
+        & > li {padding: 2rem 0;}
+        & + .bul1 {margin-top: 2rem;}
+        span {display: block; margin: 1rem 0; padding-left: 0; border-left: 0 none;}
+    }
+
+    // 리스트(이미지)
+    .list_img1
+    {
+        width: calc(100% + 2rem); margin-top: -2rem; flex-wrap: wrap;
+
+        li {max-width: calc(50% - 2rem); min-width: calc(50% - 2rem); margin: 2rem 2rem 0 0 !important;}
+
+        .symbol img {margin: 0 !important;}
+        .symbol, .box_img {padding: 3rem;}
+    }
+
+    // 리스트(이미지2)
+    .list_img2.type1 li {padding: 1.5rem;}
+
+    // 이미지2(박스)
+    div.list_img2.type1 {padding: 1.5rem 1rem;}
+
+    // 절차1
+    .step1
+    {
+        &, &.type1, &.type2
+        {
+            li 
+            {
+                width: calc(50% - 4rem); min-height: 32rem !important;
+                
+                &:nth-child(n+3) {float: right;}
+                &:nth-child(n+5) {float: left;}
+                &:nth-child(2)::after {display: none;}        
+                &:nth-child(6)::after {left: auto; right: 100%;}
+                
+                &:nth-child(3)
+                {
+                    &::after {display: block; top: auto; left: 50%; bottom: 100%; width: 1px; height: 4rem; text-indent: -0.7rem; content: ''; line-height: 4rem; transform: translateX(-50%);}
+
+                    & + li::after {top: 50%; left: 100%; width: 4rem; height: 1px; content: ''; text-indent: 0; line-height: 1px; transform: translateY(-50%);}
+                }
+            }
+        }
+
+        &.type1 li
+        {
+            min-height: 0 !important;
+
+            &:nth-child(3n)::after {margin-bottom: 1.5rem;}
+            &:nth-child(4n) + li::after {display: block; top: auto; left: 50%; bottom: 100%; margin-bottom: 1.5rem; width: 1px; height: 4rem; text-indent: -0.7rem; content: ''; line-height: 4rem; transform: translateX(-50%);}
+        }
+    }
+    
+    // 절차2
+    .step2 .box_img {margin: 1rem 0 0; padding: 2rem;}
+
+    // 절차3
+    .step3
+    {
+        display: block; margin: 1.5rem 0; padding-left: 2rem;
+
+        li
+        {
+            min-width: 100%; padding: 0 14rem 0 0;
+
+            &::after {left: -2rem; top: 50%; transform: translate(0, -50%);}
+
+            & + li 
+            {
+                margin: 1rem 0 0 !important;
+
+                &::before {display: none;}
+            }
+
+            & > span {left: auto; right: 0; width: 14rem; height: 100%; border: 0 none; border-left: 1px dashed #D8D8D8; flex-grow: 1;}
+        }
+
+        strong {min-height: 0; padding: 1rem 1rem 1rem 3rem;}
+        p {width: calc(100% + 14rem); height: auto; margin: 0; padding: 1rem 1rem 1rem 3rem;}
+
+        &.type1
+        {
+            li 
+            {
+                display: flex; padding-right: 0; align-items: center;
+
+                & > span 
+                {
+                    width: auto; min-height: 0; flex-grow: 1;
+    
+                    br {display: none;}
+                }
+            }
+            
+            strong {min-width: 13rem; max-width: 13rem; min-height: 0;}
+        }
+
+        &.type2
+        {
+            margin: 0;
+
+            li {float: none; width: 100%;}
+        }
+    }
+
+    // 절차4
+    .step4
+    {
+        &, &.type1
+        {
+            display: block; padding: 2rem; border: 1px solid #DEDEDE;
+
+            li
+            {
+                width: 40rem; max-width: 100%; height: 5rem; margin: 0 auto; border-radius: 5rem;
+
+                & + li 
+                {
+                    margin: 2rem auto 0;
+        
+                    &::before {left: 50%; top: -1rem; content: ''; text-indent: 0;}
+                }
+            }
+        }
+    }
+
+    // 절차5
+    .step5
+    {
+        padding: 2.5rem;
+
+        li {padding-left: 0; text-align: center;}
+        i {display: block; position: static; margin: 0 auto 1rem;}
+    }
+}
+
+@media (max-width: 500px)
+{
+    // 공공누리
+    .kogl 
+    {
+        text-align: center;
+
+        &, & > * {display: block;}
+
+        .img {width: 100%; border: 0 none;}
+        .txt {width: 31.5rem; max-width: 100%; margin: 0 auto; padding-top: 0;}
+    }
+
+    // 담당자
+    .duty
+    {
+        padding: 1rem 1rem 1rem 6rem;
+
+        .title {position: absolute; left: 1.5rem; top: 1.25rem;}
+
+        li 
+        {
+            display: block; line-height: 1.5;
+
+            &::after {display: none;}
+        }
+    }
+
+    // 만족도 조사
+    #satisfy
+    {
+        padding: 2rem;
+
+        .list li {display: block;}
+        .btn {right: 2rem; bottom: 2rem;}
+    }
+
+    //=============================================================================
+
+    // 박스1
+    .box1
+    {
+        &.type1 {padding: 3rem;}
+
+        &.type2
+        {
+            display: block; text-align: center;
+
+            p {width: inherit; padding: 2rem 0 3rem;}
+        }
+    }
+    
+    p.box1.txt_center .btn_type1 
+    {
+        height: auto; max-height: inherit; margin: 0.5rem 0; padding: 1rem 1.5rem; line-height: inherit; white-space: normal; word-break: keep-all;
+
+        i {margin-right: 0;}
+    }
+
+    // 박스2
+    .box2 
+    {
+        padding: 1rem 1rem 1rem 3.5rem;
+
+        &::before {left: 1.25rem;}
+    }
+
+    // 박스3
+    .box3
+    {
+        display: block; padding: 1.5rem 2.5rem 2.5rem;
+
+        i {display: block; width: 100%; min-width: 0; max-width: inherit; padding: 1rem 0 0.5rem; text-align: right;}
+        img[src*="icon2_6"] {margin-top: 0;}
+        .desc {margin: 1rem 0 0;}
+    }
+
+    // 박스4
+    .box4
+    {
+        padding: 3rem; font-size: $size;
+
+        strong {margin-top: 0 !important; font-size: 3rem;}
+        img {max-height: 100%;}
+    }
+
+    // 박스5
+    .box5
+    {
+        position: static; padding: 0;
+
+        i {display: block; position: static;}
+        img {@include position(none); width: 100%;}
+
+        .group
+        {
+            float: none; width: 100%; max-width: 100%; padding: 2rem 0 0;
+
+            strong {font-size: 2.3rem;}
+        }
+
+        &.type1 .group
+        {
+            strong {font-size: 3rem;}
+
+            & + p {padding-top: 2rem;}
+        }
+    }
+
+    // 박스6
+    .box6
+    {
+        padding: 2.5rem;
+
+        i {display: block; position: static; margin: 0 auto 2rem;}
+    }
+
+    // 박스6 타입1
+    div.box6.type1 { &, &.type1 {padding: 2.5rem; text-align: center;} }
+
+    // 박스6 두 개 이상
+    ul.box6
+    {
+        &, &.type2, &.type3, &.type6 { & > li {padding: 2.5rem;} }
+
+        &.type1
+        {
+            & > li {padding: 15rem 2.5rem 2.5rem; text-align: center;}
+
+            i {@include position(left); right: auto; top: 2.5rem;}
+        }
+
+        &.type3 > li {text-align: center;}
+
+        &.type5, &.type6
+        {
+            display: block;
+
+            & > li + li {margin: 1rem 0 0 !important;}
+        }
+
+        &.type6 
+        {
+            width: 100%;
+
+            & > li {margin-right: 0;}
+        }
+    }
+
+    // 박스7
+    .box7
+    {
+        display: block;
+
+        i 
+        {
+            display: block; width: 100%; min-width: 0; max-width: inherit; margin-top: 2rem;
+
+            &:first-child {margin: 0 0 2rem;}
+            img {@include position(none); width: 100%;}
+        }
+
+        .group {padding: 0;}
+    }
+
+    // 박스8
+    .box8
+    {
+        padding: 5rem 3rem; border-width: 0.3rem; line-height: 1.5;
+
+        &::before {width: calc(100% - 2rem); height: calc(100% - 2rem);}
+
+        .group, h2
+        {
+            &::before, &::after {width: 5rem; height: 5rem;}
+            &::before {left: 1.5rem;}
+            &::after {right: 1.5rem;}
+        }
+
+        .group { &::before, &::after {bottom: 1.5rem;} }
+
+        h2
+        {
+            &::before, &::after {top: 1.5rem;}
+
+            font-size: 3.5rem;
+        }
+
+        p {margin: 1rem 0 3rem;}
+        strong:last-child {margin-top: 3rem;}
+        
+        li 
+        {
+            padding-right: 1.5rem; border-radius: 1rem;
+
+            &::before {top: 1.5rem; transform: translate(0);}
+        }
+
+        // 명예의 전당
+        &.type1
+        {
+            h2
+            {
+                font-size: 4rem;
+
+                span {font-size: 2.5rem;}
+            }
+
+            .related
+            {
+                margin-top: 3rem;
+
+                strong, span {width: 100%;}
+            }
+        }
+    }
+
+    // 버튼        
+    .btn_type1 
+    {
+        padding: 0 1.5rem;
+
+        i {margin-left: 0.5rem; font-size: $size;}
+    }
+
+    // 리스트2
+    .list2
+    {
+        .group {padding: 2rem 2rem 1rem;}
+        .table1 + .table1 {margin-top: 1rem;}
+    }
+
+    // 리스트4
+    .list4
+    {
+        img {max-width: 4rem; max-height: 4rem;}
+        li {padding: 2rem 1rem;}
+
+        .title3 {margin-top: 1rem; font-size: $size;}
+    }
+
+    // 리스트(이미지)
+    .list_img1.type1
+    {
+        display: block; width: 100%; margin-top: 0;
+
+        li {max-width: inherit; min-width: 0; margin: 1rem 0 0 !important;}
+
+        .title2 + .box_img
+        {
+            min-height: 0;
+
+            img[src*=logotype1_2] {margin: 0;}
+
+            img[src*=logotype1_1] 
+            {
+                margin-top: 0;
+
+                & + span {margin-bottom: 0;}
+            }
+        }
+    }
+
+    // 리스트(이미지2)
+    .list_img2
+    {
+        display: block; width: 100%; margin-bottom: 0;
+
+        li 
+        {
+            width: 100%; padding: 2rem;
+
+            & + li {margin: 1rem 0 0 !important;}
+        }
+
+        &.type1 
+        {
+            @include list(type2, 1rem, 1rem, 2);
+
+            li
+            {
+                &:nth-child(2) {margin-top: 0 !important;}
+                &:nth-child(2n+1) {margin-right: 1rem !important;}
+            }
+        }
+    }
+
+    div.list_img2 
+    {
+        padding: 1.5rem;
+
+        .title3 {margin-top: 1.5rem !important; font-size: $size;}
+
+        &.type1 > i:nth-child(n+3) {margin-top: 0;}
+    }
+
+    // 절차1
+    .step1
+    {
+        &, &.type1
+        {
+            width: calc(100% + 2rem); margin-bottom: -2rem;
+
+            li 
+            {
+                width: calc(50% - 2rem); min-height: 27rem !important; margin: 0 2rem 2rem 0; padding: 2rem 1rem;
+
+                &::after {max-width: 2rem; max-height: 2rem;}
+                &:nth-child(3n)::after {line-height: 2rem;}
+            }
+
+            i {width: 8rem; height: 8rem; line-height: 8rem;}
+            img {width: 3.5rem;}
+            span {width: 7rem; height: 2.5rem; font-size: 1.2rem; line-height: 2.5rem;}
+            strong {font-size: $size;}
+        }
+
+        &.type1
+        {
+            li 
+            {
+                min-height: 0 !important; margin-bottom: 3.5rem;
+
+                &:nth-child(3n)::after {margin-bottom: 1.5rem;}
+                &:nth-child(4n) + li::after {height: 2rem; line-height: 2rem;}
+            }
+
+            p 
+            {
+                display: flex; min-height: 5rem; text-align: center; justify-content: center; align-items: center; flex-wrap: wrap;
+
+                &.type1
+                {
+                    br {display: none;}
+                    & > * {width: 100%;}
+                }
+            }
+        }
+
+        &.type2 li:nth-child(6)::after {line-height: 1px;}
+    }
+
+    // 절차2
+    .step2
+    {
+        & > li
+        {
+            display: block; min-height: 0; padding: 2rem 0 !important;
+    
+            &::before, .count {@include position(none); @include square(3.5rem); display: block; margin-bottom: 1.5rem; font-size: $size;}
+        }
+
+        .list5 > li {border-bottom-style: dotted;}
+        .count img {max-width: 2rem; max-height: 2rem;}
+    }
+    
+    // 절차5
+    .step5
+    {
+        padding: 2.5rem 1.5rem;
+
+        li + li 
+        {
+            margin-left: 2.5rem;
+
+            &::before {left: -2.5rem;}
+        }
+        
+        span {font-size: 1.5rem;}
+        strong {font-size: $size; font-weight: normal; line-height: 1.2;}
+    }
+
+    // 버튼
+    .btns > .btn_type1 {margin-top: 1rem;}
+    .btn_type1 i {display: inline-block; margin: 0 -0.5rem 0 0.5rem; font-size: inherit;}
+}

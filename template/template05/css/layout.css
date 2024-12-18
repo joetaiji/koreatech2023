@@ -1,0 +1,13 @@
+/*
+:root { 
+  --headWidth: 192rem; 
+  --container: 140rem;
+  --headHeight : 14rem;
+  --color1: #F6AB00; 
+  --color2: #E85B27;
+  --icon: 'remixicon', sans-serif;
+}
+*/
+#header {
+  padding-right: 7rem;
+}/*# sourceMappingURL=layout.css.map */

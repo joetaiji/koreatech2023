@@ -1,0 +1,60 @@
+@charset "UTF-8";
+@import "mixin"; //템플릿별 믹스인
+@import url("/template/common/css/contents.css");
+@import url('/template/common/css/contents1.css');
+
+:root{
+--visualHeight: 46rem; 
+}
+
+#header{padding-right: 0;}
+
+#visual{ background:50% 50%/cover no-repeat;
+	>.container{height: var(--visualHeight);color: #fff;display: flex;align-items: flex-end;justify-content: space-between;padding-bottom: 11rem;}
+	.title{font-size: 5rem; text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+		em{color:var(--color1); font-size: 1.7rem;font-weight: 800;text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.30);display: block;letter-spacing: 0.68rem;}
+	}	
+	.quick_service{display: none;}
+}
+.location{ position: absolute; left: 50%; top: calc(var(--visualHeight) - 15rem); width: calc(100% - 6rem); max-width: var(--container); transform: translateX(-50%);color: #fff;
+	.path{color: rgba(255,255,255,.8);margin-left: auto;
+		.icon>a::before{background: #fff;}
+		li::before{color: rgba(255,255,255,.5);}
+		.active{color:#fff;}
+	}
+}
+
+#contentWrap{display: flex; justify-content: space-between;}
+#snb{position: absolute;left: 0;bottom: 100%; width:100%;
+	.list{
+		.menu{display: flex;width: 100%;
+			>li{flex:1; display: flex;
+				a{font-size: 1.8rem; padding: 2.5rem; display: flex; align-items: center; justify-content: center;flex:1; background: rgba(0, 0, 0, 0.36); color: #fff;}
+				&.active{
+					a{background: var(--color2); color: #fff;}
+				}
+			}
+		}
+	}
+}
+#contents{flex:1;margin-bottom: 10rem;}
+
+#contents_title{font-size: 5rem;color: #000; margin: 8rem 0 6rem;position: relative; text-align: center;display: flex; justify-content: center; flex:1; 
+	&::after{content: '';display: block;width: 1.3rem; height: 1.3rem; border-radius: 50%; background: var(--color2); box-shadow:0 .3rem 1.3rem rgba(232, 91, 39, 0.54);margin:.7rem 0 0 1rem;}
+}
+
+#contents_body {margin-bottom: 8rem;
+	.depth4_tab{margin-bottom: 8rem;
+		>ul{display: flex;
+			>li{flex: 1;position: relative;
+				>a{display: flex;align-items: center;justify-content: center; border-bottom:1px solid #D8D8D8; padding:1.8rem 1.5rem; color: #333; font-weight: 600; font-size: 1.8rem; transition: 0.1s;height: 100%;}
+				&:hover a, &:focus a{border-bottom-width: 3px;}
+				&.active{
+					a{color: #183072;border-bottom: 3px solid #183072;}					
+				}
+				~li::before{content: '';width: 1px;height: 2rem;background: #d8d8d8;position: absolute;left: 0;top: 50%;transform: translateY(-50%);}
+			}
+		}
+	}
+}
+

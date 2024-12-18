@@ -1,0 +1,1609 @@
+@charset "utf-8";
+@import '../../template/template01/css/scss/mixin.scss';
+
+/*-------------------------------------------------
+title       : 게시판 등 공통페이지
+History     : 2023-12-14 ㅈㅁㅈ
+-------------------------------------------------*/
+
+#contents 
+{
+    // 게시판 상단
+    .board_info
+    {
+        position: static;
+
+        form {float: none;}
+
+        // 검색
+        .form
+        {
+            display: flex; width: 100%; margin-bottom: 5rem; padding: 4rem; border-radius: 0.5rem; background-color: #F6F7F9; text-align: center; justify-content: center;
+            
+            .item
+            {
+                line-height: 5.5rem;
+
+                & + * {margin: 0 0 0 0.7rem;}
+            }
+
+            & > * {display: inline; padding: 0;}
+            [class*="form_"] {width: auto;}
+            .btn button {min-width: 9rem;}
+
+            .form_radio {margin: 0 !important; padding-right: 2rem; font-size: $size; line-height: 5.5rem;}
+            .form_textbox[title*="휴대폰번호"] {width: 16rem;}
+
+            .btn-group .btn 
+            {
+                display: flex;
+                
+                span 
+                {
+                    display: inline;
+
+                    & + span {margin-left: 0.7rem;}
+                }
+
+                button 
+                {
+                    width: auto; min-width: 9rem;
+
+                    &:hover, &:focus {background-color: #fff; font-weight: 600; color: #333;}
+                    &.btn-write { &:hover, &:focus {color: #006bb7;} }
+                }
+            }
+        }
+
+        p.btn-write button 
+        {
+            @include height(5.5rem, 1px, #132F75);
+            position: absolute; right: 0; bottom: 0; width: 12.5rem; max-height: inherit; border-radius: 0.3rem; background-color: #132F75; font-size: 1.8rem; font-weight: 500; color: #fff; text-align: center; transition: $time2;
+
+            i {display: none;}
+
+            &:hover, &:focus {background-color: #fff; font-weight: 600; color: #132F75;}
+        }
+
+        .form_select select, .form_textbox, .btn button {height: 5.5rem !important; border-radius: 0.3rem; font-size: 1.7rem !important;}
+        .form_textbox {padding-left: 1.5rem;}
+
+        .form_select
+        {
+            vertical-align: top;
+
+            &::after {top: 0; right: 2rem; z-index: 1; content: ''; line-height: 5.5rem; transform: translate(0);}
+
+            select {padding-left: 2rem; background-color: #fff;}
+        }
+
+        .page
+        {
+            display: flex; float: none; font-size: 1.7rem; line-height: 1.5;
+
+            strong {font-weight: 700;}
+            .total::after {position: relative; left: -0.3rem; content: '의 게시물이 등록되어 있습니다.';}
+
+            .current 
+            {
+                text-align: right; flex-grow: 1;
+
+                &::before {width: auto; height: auto; margin: 0 0.25rem 0 0; background: none; content: '현재'; vertical-align: top;}
+            }
+        }
+    }
+
+    // 게시판 페이저
+    .board_pager a 
+    {
+        font-size: 1.7rem; transition: $time2;
+
+        strong {font-weight: inherit;}
+
+        &:hover, &:focus {border-color: #767676;}
+        &.active {display: inline-block; border-radius: 100%; background-color: #333; color: #fff;}
+        
+        &.arr 
+        {
+            font-size: 1.4rem; color: #777;
+
+            &.first, &.last {text-indent: -0.75rem; letter-spacing: -0.75rem; white-space: nowrap;}
+            &.first {margin-right: 0.5rem;}
+            &.last {margin-left: 0.5rem;}
+            &.prev, &.pre {margin-right: 1.25rem;}
+            &.pre::before {font-family: $icon2; content: "";}
+            &.next {margin-left: 1.25rem;}
+            &:hover, &:focus {color: #fff;}
+        }
+    }
+
+    // 게시판
+    .board-list, .board_list
+    {
+        border-bottom-color: #E6E6E6;
+
+        // 목록
+        thead tr {background: none !important;}
+        th {font-size: 1.7rem;}
+
+        td 
+        {
+            border-bottom-color: #E6E6E6; font-size: 1.7rem;font-weight: 300; color: #6A6A6A; word-break: keep-all;
+
+            &.txt_left[aria-label="제목"]
+            {
+                font-size: 1.8rem; font-weight: 500; color: #333;
+
+                a {width: auto; padding-right: 3rem;}
+
+                .xi-new 
+                {
+                    @include square(2rem);
+                    position: absolute; right: 0; top: 0.7rem; background-color: #DD0000; font-size: 1.2rem; font-weight: 500; color: #fff;
+
+                    &::before {font-family: $font; content: 'N';}
+                }
+            }
+
+            &[aria-label="기간"] {white-space: nowrap;}
+
+            &[aria-label="첨부파일"] a
+            {
+                @include square(2.5rem);
+                display: inline-block; position: relative; font-size: 2rem; color: #aaa; vertical-align: middle;
+
+                &::before {@include icon(type3, '\EA84'); font-family: $icon1;}
+
+                img {display: none;}
+            }
+
+            &[aria-label="상태"] span 
+            {
+                display: inline-block; overflow: hidden; width: 7rem; height: 3rem; border-radius: 0.3rem; font-size: $size; text-align: center; line-height: 3rem; vertical-align: middle; white-space: nowrap;
+
+                &[data-label="설문 대기"] {background-color: #D9D9D9; color: #313131;}
+                &[data-label="진행중"] { background-color: #22449C; color: #fff;}
+                &[data-label="종료"] {background-color: #242424; color: #fff;}
+            }
+
+            &[aria-label="결과보기"]:last-child
+            {
+                padding-top: 0.5rem; padding-bottom: 0.5rem;
+
+                .btn_line 
+                {
+                    display: block; width: 11rem; height: 3rem; margin: 0 auto; padding: 0; max-height: inherit; border-radius: 0.4rem 0.4rem 0 0; border-color: #ddd; font-size: 1.4rem; font-weight: 500; color: #333; line-height: calc(3rem - 2px);
+
+                    & + .btn_line {margin-top: -1px; border-radius: 0 0 0.4rem 0.4rem;}
+                    &:first-child:last-child {border-radius: 0.4rem;}
+                    &:hover, &:focus {background-color: #EFEFEF;}
+                }
+            }
+        }
+
+        .icon {min-width: 5.6rem; height: 3.1rem; padding: 0 0.6rem; border-radius: 0.3rem; background-color: #D9D9D9; font-size: $size; font-weight: 400; color: #313131; line-height: 3.1rem;}
+
+        // 글쓰기
+        .tstyle_write
+        {
+            tr {background: none !important;}
+            td {padding: 1.5rem 3rem; border-color: #E6E6E6;}
+
+            th 
+            {
+                padding: 1.5rem 3rem; border-color: #E6E6E6; background-color: #F6F7F9; font-size: 1.7rem;
+
+                label 
+                {
+                    position: relative; padding-right: 1.5rem;
+
+                    .point11 {position: absolute; right: 0; top: 0; color: #E50000 !important; line-height: 1;}
+                }
+            }
+
+            //
+            .form_textbox {border-radius: 0.3rem; border-color: #D9D9D9;}
+
+            // 첨부파일
+            .file
+            {            
+                & + .file th {color: transparent;}
+
+                &.active
+                {
+                    td {@include ellipsis(1, 4.3rem); position: relative; max-height: inherit; padding: 2rem 11rem 1rem 3rem;}
+
+                    & + .file
+                    {
+                        td 
+                        {
+                            position: relative; padding-top: 2.5rem; padding-bottom: 2.5rem;
+
+                            &::before {position: absolute; left: 3rem; top: 0; width: calc(100% - 3rem); height: 1px; background-color: #E6E6E6; content: '';}
+                        }
+
+                        &.active td 
+                        {
+                            padding-top: 0;
+
+                            &::before {display: none;}
+                        }
+                    }
+                }
+
+                .btn_del 
+                {
+                    position: absolute; right: 0; top: auto; width: 9.5rem; height: 4.3rem; border-radius: 0.3rem; border: 1px solid #D3D3D3; background-color: #fff; line-height: calc(4.3rem - 2px);
+
+                    &::before {font-family: $font; font-size: $size; font-weight: 500; color: #000; content: '삭제하기';}
+                }
+            }
+
+            .form_file
+            {
+                height: 4.3rem;
+
+                .file_btn {display: none;}
+
+                input
+                {
+                    z-index: 1; cursor: pointer !important;
+
+                    &:hover, &:focus { & + .file_btn + .txt, & + .txt { &::before {background-color: #fff; font-weight: 600; color: #454545;} } }
+                }
+
+                .txt 
+                {
+                    @include ellipsis(1, 4.3rem);
+                    display: block; height: 100%; padding-left: 11.5rem;
+
+                    &::before {width: 9.5rem; padding: 0; border-radius: 0.3rem; border-color: #454545; background-color: #454545; font-size: $size; color: #fff; line-height: calc(4.3rem - 2px);}
+                    &::after {display: none;}
+                }
+            }
+        }
+    }
+
+    // 게시판 내용
+    .board_view
+    {
+        border-top: 0.2rem solid #333; border-bottom: 1px solid #E6E6E6;
+
+        & > .title {padding: 5rem 0 0; font-size: 2.8rem; font-weight: 700; color: #3E3E3E; text-align: center;}
+
+        .info 
+        {
+            padding: 2rem 0 0; border: 0 none; background: 0 none; font-size: 1.7rem; font-weight: 300; text-align: center;
+
+            li
+            {
+                display: inline; margin: 0 2rem;
+
+                &+ li::before {display: none;}
+            }
+
+            strong 
+            {
+                font-weight: 600; color: #333;
+
+                &::before {top: 0.4rem; background-color: #D3D3D3;}
+            }
+        }
+        
+        .contents 
+        {
+            margin-top: 5rem; padding: 10rem 8rem; border-top: 1px solid #B5B5B5; border-bottom: 0 none;
+
+            .i-info,
+            ul[style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; background-color: #f8f9fa; color: #666; text-align: center;  margin: 10px 0; "]
+            {
+                position: relative; margin: 5rem 0 10rem !important; padding: 2rem 3rem 2rem 6rem; border: 1px solid #D8D8D8 !important; background: none !important; text-align: left !important;
+
+                i 
+                {
+                    position: absolute; left: 3.5rem; top: 2.6rem; color: #CD4848;
+
+                    &::before {content: '';}
+                }
+            }
+
+            .i-info::before {@include icon(type2, ''); left: 3.5rem; color: #CD4848;}
+
+            &.video {height: auto;}
+        }
+
+        // QR코드
+        .qr 
+        {
+            position: relative; height: 0;
+
+            img {position: absolute; right: 0; top: 0; height: 11.5rem; border: 1px solid #E6E6E6;}
+        }
+
+        // 첨부파일
+        .file 
+        {
+            display: flex; padding: 5rem 8rem; border: 0 none; background-color: #F6F7F9;
+
+            .title {display: flex; width: 11.5rem; min-width: 11.5rem; max-width: 11.5rem; font-size: 1.7rem; font-weight: 600; color: #333; align-items: center;}
+
+            .list 
+            {
+                flex-grow: 1;
+
+                li 
+                {
+                    height: 4.5rem;
+
+                    & > a {color: inherit;}
+                }
+            }
+
+            .btn_line 
+            {
+                width: 9.5rem; height: 4.5rem; max-height: inherit; margin-left: 0.5rem; border-radius: 0.3rem; border-color: #D3D3D3; font-size: $size; font-weight: 500; color: #000; line-height: calc(4.5rem - 2px);
+
+                i {display: none;}
+                &:hover, &:focus {border-color: #000; color: #fff;}
+            }
+        }
+    }
+
+    // 게시판 버튼
+    .board_btns 
+    {
+        margin: 6rem 0;
+
+        i {display: none;}
+
+        .btn 
+        {
+            min-width: 11rem; border-radius: 0.3rem; border: 1px solid #22449C; background-color: #22449C; color: #fff;
+
+            &, &.type1, &.type2 {height: 5.5rem; max-height: inherit; padding: 0 2rem; font-size: inherit; line-height: calc(5.5rem - 2px); vertical-align: middle;}
+            &:hover, &:focus {background-color: #fff; font-weight: 600; color: #22449C;}
+        }
+    }
+
+    // 댓글
+    .comment .list li > p:nth-child(2) 
+    {
+        @include bg1;
+        display: inline-block; overflow: hidden; top: -0.2rem; height: 2rem; margin-left: 0.5rem; border-radius: 0.3rem; border: 1px solid #d8d8d8; font-size: 1.2rem; line-height: 2rem; vertical-align: middle; white-space: nowrap;
+
+        &::before {@include position(left); top: 0; z-index: 2; width: 1px; height: 100%; background-color: #d8d8d8; content: '';}
+
+        span 
+        {
+            position: relative; left: -0.5rem; z-index: 1;
+
+            &::before {position: absolute; left: 0; top: 0; width: 3rem; height: 100%; padding-right: 0.5rem; background-color: #fff; font-size: 1rem; text-align: right; content: '👍'; line-height: 1.2;}
+        }
+
+        .vote_n
+        {
+            left: -1rem; z-index: 0;
+
+            &::before {width: 4rem; content: '👎';}
+        }
+    }
+
+    // 게시판 박스
+    .board_box.type1 
+    {
+        border-radius: 3rem; border-color: #22449C; word-break: keep-all;
+
+        .title 
+        {
+            margin-bottom: 2rem; font-size: 2.8rem;
+
+            i 
+            {
+                @include square(12rem); 
+                display: block; margin: 0 auto 2.5rem; border-radius: 100%; background-color: #F4F6F8; font-size: 8rem; color: #FF7F00;
+
+                &.xi-lock::before {@include icon(type3, '\EE6E'); font-family: $icon1;}
+            }
+        }
+
+        .form
+        {
+            margin-top: 2rem;
+
+            input[type="password"] {width: 35rem; border-radius: 0.3rem;}
+        }
+
+        .board_btns
+        {
+            margin: 5rem 0 0;
+
+            .btn 
+            {
+                min-width: 16.5rem;
+
+                &.type1 
+                {
+                    font-weight: 500; color: #000;
+
+                    &:hover, &:focus {color: #fff;}
+                }
+                
+                &.type2 
+                {
+                    border-color: #132F75; background-color: #132F75;
+
+                    &:hover, &:focus {background-color: #fff; color: #132F75;}
+                }
+            }
+        }
+    }
+
+    // 블로그형 게시판 목록
+    .blog_list
+    {
+        a {padding-right: 5rem;}
+
+        .thumb {width: 31rem; height: 23.5rem;}
+        .title {font-size: 1.9rem;}
+        .txt {@include ellipsis(3, 3.1rem); height: auto; margin-bottom: 4rem; font-weight: 300;}
+
+        .desc
+        {
+            padding: 2rem 0;
+
+            & > span 
+            {
+                font-size: 1.7rem; font-weight: 300;
+        
+                &.name {display: inline-block;}
+        
+                & + span
+                {
+                    margin-left: 4rem;
+        
+                    &::before {display: none;}
+                }
+        
+                .label 
+                {
+                    font-weight: 600; color: #333;
+        
+                    &::after {display: inline-block; position: relative; top: -0.2rem; width: 1px; height: 1.2rem; margin: 0 0.5rem 0 1rem; background-color: #D3D3D3; content: ''; vertical-align: middle;}
+                }
+            }
+        }
+
+        // PDF 게시판 내용
+        &.pdf_view
+        {
+            overflow: hidden; margin: 0 0 6rem !important; border: 0 none;
+        
+            & > li {overflow: hidden; position: relative; padding: 5.5rem 6rem 9rem 42.5rem; border-radius: 0.5rem; background-color: #F6F7F9;}   
+        
+            .title {color: #3E3E3E;}
+            .thumb {overflow: hidden; position: absolute; left: 6rem; top: 5.5rem; width: 32rem; height: 43rem; min-height: 0;}
+            
+            .desc
+            {
+                float: none; width: auto; min-height: 30rem; margin-bottom: 4rem;
+        
+                .title {display: flex; min-height: 9rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px dashed #D5D5D5; font-size: 2.8rem; font-weight: 700; line-height: 130%; align-items: center; white-space: normal;}
+            }
+        
+            .pdf_btn 
+            {
+                float: none; width: auto;
+        
+                .btn 
+                {
+                    width: auto; max-width: 100%;
+        
+                    i {display: none;}
+        
+                    a 
+                    {
+                        position: relative; width: auto; height: 5.5rem; max-height: inherit; padding: 0 6.5rem 0 2.5rem; border-radius: 0.3rem; border: 1px solid #D3D3D3; background-color: #fff; font-size: inherit; font-weight: 500; color: #000; line-height: calc(5.5rem - 2px); flex-grow: 0; transition: $time2;
+        
+                        &::after {@include icon(type2, ''); right: 2.5rem; font-weight: 600;}
+                        &[href*="boardDownload"]::after {font-family: $icon1; content: '\EC59';}
+        
+                        &:hover, &:focus {border-color: #000; background-color: #000; color: #fff;}
+                    }
+                }
+            }
+        }
+    }
+
+    // PDF 게시판 목록
+    .board_pdf
+    {
+        width: calc(100% + 4rem); padding-bottom: 7.5rem;
+
+        & > li {max-width: 25%; padding: 4rem 4rem 1rem 0; border: 0 none; flex: 1 1 25%;}
+
+        a 
+        {
+            display: block;
+
+            &:hover, &:focus
+            {
+                .thumb
+                {
+                    background-color: #000;
+
+                    img {transform: translate(-50%, -50%) scale(1.2); opacity: 0.75;}
+                }
+            }
+        }
+
+        .thumb
+        {
+            min-height: 0; padding-top: 132%; border: 1px solid #ddd; transition: $time2;
+
+            img {@include position(center); min-height: 100%; transition: $time2;}
+        }
+
+        .title {font-size: 1.9rem;}
+        .item {padding-bottom: 0;}
+    }
+    
+    // PDF 게시판 버튼
+    .depth4_tab + .mb50, .mb50:first-child
+    {
+        & > .mb10.Fr
+        {
+            padding: 4rem; border-radius: 0.5rem; background-color: #F6F7F9; text-align: center;
+
+            & > .btn_line
+            {
+                @include btn(5.5rem, 0 2.5rem, 1px, #D3D3D3, #fff, 1.8rem, #000);
+                margin: 0.5rem 0.25rem;  border-radius: 0.3rem; font-weight: 500; transition: $time2;
+            
+                i 
+                {
+                    top: 0; margin: 0 -0.5rem 0 1.5rem;
+            
+                    &::before {font-family: $icon1;}
+                }
+            
+                .xi-download::before {content: "\ec59";}
+                .xi-search::before {content: '\F2DB';}
+            }
+        }
+    }
+
+    // 영상 게시판 내용
+    div#video_div
+    {
+        display: block; position: relative; margin-bottom: 8rem; padding: 17.5rem 0 0; border: 0 none;
+
+        & > div.player 
+        {
+            display: block; position: relative; max-width: 100%; height: 0; margin-bottom: 10rem; padding-top: 56.5%;
+
+            iframe {position: absolute; left: 0; top: 0; width: 100%; height: 100%;}
+
+            .i-info 
+            {
+                display: flex; position: absolute; left: 0; top: 100%; width: 100%; height: 6.5rem; padding: 0 3rem 0 6rem; border: 1px solid #D8D8D8; align-items: center;
+
+                &::before {@include icon(type2, ''); left: 3.5rem; color: #CD4848;}
+            }
+        }
+
+        & > div.movie_text
+        {
+            display: block; max-width: 100%; height: auto; padding: 0;
+
+            .title {@include ellipsis(1, calc(9.5rem - 3px)); position: absolute; width: 100%; height: 9.5rem; left: 0; top: 0; padding: 0 25rem 0 8rem; border-top: 0.2rem solid #333; border-bottom: 1px solid #B5B5B5; font-size: 2.8rem; color: #3E3E3E; text-align: left; line-height: 9.5rem;}
+
+            & > .contents 
+            {
+                display: block; position: relative; height: auto; max-height: 30rem; padding: 5rem; border: 0 none; background-color: #F4F6F8;
+
+                &::before {position: absolute; left: 0; bottom: 0; width: 100%; height: 5rem; background-color: #F4F6F8; content: '';}
+            }
+        }
+    }
+
+    // 영상 게시판 목록
+    .youtube_list
+    {
+        width: calc(100% + 4rem); padding-bottom: 4rem;
+
+        & > li {width: 20%; padding: 4rem 4rem 0 0; border: 0 none;}
+        .date, .hit {font-size: $size;}
+
+        .youtube
+        {
+            &::before {display: block !important; top: 33%; width: 6.2rem; height: 6.6rem; background: url('../img/board/icon_play.png') no-repeat; background-size: 100% auto; opacity: 1; content: '';}
+            &:hover, &:hover { &::before {transform: translate(-50%, -50%) scale(1.1);} }
+        }
+
+        .thumb 
+        {
+            background-color: #000;
+
+            &::before, &::after {display: none;} 
+        }
+    }
+
+    // 본인인증
+    %certify {font-size: 2.8rem; font-weight: 700; color: #3E3E3E;}
+
+    form[action*="nonMemberLogin"], form[action*="nice.checkplus.co.kr"]
+    {
+        & + .tit_1 
+        {
+            display: block; margin-bottom: 3rem; font-size: 2.8rem; font-weight: 700; color: #3E3E3E;
+    
+            & + .box4 
+            {
+                @include width(130rem, calc(100% - 16rem));
+                position: absolute; left: auto; top: auto; height: 17.5rem; padding: 3.5rem 5rem; border-radius: 1.5rem; background-color: #F4F6F8; color: inherit; transform: translate(5rem, 57.5rem);
+    
+                &::before {display: block; margin: 0 0 1rem 1rem; font-size: 1.9rem; font-weight: 600; color: #3E3E3E; content: '안내사항';}
+                &::after {position: absolute; top: 3.5rem; left: 3.2rem; font-family: $icon2; font-size: 2rem; color: #000; content: '';}
+    
+                p 
+                {
+                    @include bul(1.5rem);
+    
+                    &::before {top: 1.25rem; width: 0.4rem; height: 0.4rem; border-radius: 100%; background-color: #171717;}            
+                    i, br {display: none;}
+                }
+    
+                & + .certify
+                {
+                    display: flex; height: 80rem; padding: 9.5rem 0 30rem; border-radius: 3rem; border: 1px solid #22449C; text-align: center; word-break: keep-all;
+                
+                    .item 
+                    {
+                        position: relative; padding: 2.5rem 5rem 0; color: #6A6A6A; line-height: 170%; flex: 1 1;
+                
+                        & + .item {border-left: 1px dashed #ccc;}
+                    }
+                
+                    .title 
+                    {
+                        @extend %certify;
+                        margin-bottom: 2rem; padding-top: 14.5rem; background: url('img/icon_mobile.png') no-repeat center 0; background-size: 12rem auto; line-height: 3.5rem;
+                        
+                        & + img {display: none;}
+                    }
+                
+                    .btn1
+                    {
+                        @include height(5.5rem, 1px, #D3D3D3);
+                        display: inline-block; width: 16.5rem; margin-top: 5rem; border-radius: 0.3rem; font-weight: 500; color: #000; vertical-align: top; transition: $time2;
+                
+                        &:hover, &:focus {border-color: #000; background-color: #000; color: #fff;}
+                
+                        &[onclick*="kakaoLogin();"] 
+                        {
+                            margin-top: 31.5rem;
+                
+                            &::before 
+                            {
+                                @extend %certify;
+                                position: absolute; left: 0; top: 2.5rem; width: 100%; padding-top: 14.5rem; background: url('img/icon_kakao.png') no-repeat center 0; background-size: 12rem auto; content: '카카오톡 간편 인증'; line-height: 3.5rem;
+                            }
+                
+                            &::after {@include position(left); top: 22rem; width: 100%; padding: 0 5rem; font-size: 1.8rem; font-weight: 400; color: #6A6A6A; line-height: 170%; content: '카카오 인증서를 발급받은 카카오톡 사용자의 최소 정보인 성명, 생년월일, 휴대폰번호로 개인의 일치 여부를 확인합니다.';}
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // 학사일정 상단
+    .year_area
+    {
+        position: relative; height: 5.5rem; line-height: 5.5rem;
+
+        & > .pre_year, & > .next_year 
+        {
+            position: absolute; left: 7.5rem; top: 0; font-size: 2.1rem; font-weight: 600; color: #3E3E3E; line-height: inherit;
+
+            &::before {position: absolute; left: 0; bottom: 1.25rem; width: 0; height: 1px; background-color: #3E3E3E; content: ''; transition: $time2;}
+            &::after {content: '년';}
+            &:hover, &:focus { &::before {width: 100%;} }
+        }
+
+        & > .next_year 
+        {
+            left: auto; right: 7.5rem;
+
+            &::before {left: auto; right: 0;}
+        }
+
+        div
+        {
+            & > a 
+            {
+                @include square(5.5rem); 
+                position: absolute; left: 0; top: 0; border-radius: 100%; border: 1px solid #000; font-weight: 600; color: #000; transition: $time2;
+
+                &::before {@include icon(type3, '');}
+                &:hover, &:focus {background-color: #000; color: #fff;}
+
+                i {display: none;}
+
+                &.next_year 
+                {
+                    left: auto; right: 0;
+
+                    &::before {content: '';}
+                }
+            }
+
+            strong
+            {
+                font-size: 3.8rem; font-weight: 700; color: #3E3E3E;
+            
+                &::after {content: '년 대학';}
+            }
+        }
+
+        & + .month_area
+        {
+            overflow: hidden; height: auto; padding: 0 5.5rem; border-radius: 0.5rem; background-color: #F6F7F9;
+
+            a 
+            {
+                height: 10rem; background: none; color: #3E3E3E;
+
+                &::after {content: '월';}
+                &:hover, &:focus {color: #183072;}
+            }
+        }
+    }
+
+    // 학사일정 콘텐츠
+    div.cal_box
+    {
+        & + div.ScheduleList#listView {margin: 0; border: 0 none;}
+
+        .CalendarList 
+        {
+            width: 40rem; padding: 2.5rem 2rem; border-radius: 0.5rem; border-color: #ddd;
+
+            h2 
+            {
+                position: static; height: 5rem; border-radius: 0.3rem; background-color: #F6F7F9; text-align: center;
+
+                strong 
+                {
+                    font-size: 1.8rem; font-weight: 500; color: #000; line-height: 5rem;
+
+                    &::before {content: attr(data-year);}
+                }
+                
+                span {display: none;}
+            }
+            
+            div.Bhead > ul > li, div.Bbody > ul > li > span 
+            {
+                border-left: 0 none;
+
+                &:first-child { &, & > a {color: #E00000 !important;} }
+                &:last-child { &, & > a {color: #0026EF !important;} }
+            }
+
+            div.Bhead > ul 
+            {
+                border-top: 0 none !important; border-bottom-color: #000 !important;
+
+                & > li {font-size: 1.7rem !important;}
+            }
+
+            div.Bbody > ul > li
+            {
+                &:last-child {border-bottom: 0 none !important;}
+
+                & > span 
+                {
+                    height: auto !important; line-height: 5rem;
+        
+                    & > a 
+                    {
+                        z-index: 0; height: 5rem; margin: 0; padding: 0; font-size: $size; color: inherit !important;
+
+                        &.current::after {top: 50%;}
+                        & + span.schedule {display: none;}
+                    }
+
+                    &.sch > a
+                    {
+                        color: #fff !important;
+
+                        &::before {@include position(center); display: block !important; z-index: -1; width: 3rem; height: 3rem; border-radius: 100%; border: 0 none; background-color: #F46D22; content: '';}
+                    }
+                }
+            }
+        }
+
+        .lst
+        {
+            overflow: hidden; float: right; width: calc(100% - 46.5rem); padding: 0; border-top: 0.2rem solid #000;
+
+            thead th {padding: 2rem; border-bottom: 1px solid #AFAFAF; background-color: #F6F6F6; font-weight: 500; color: #000; white-space: nowrap;}
+
+            td
+            {
+                padding: 2rem 3rem; border-bottom: 1px solid #ddd; color: #6A6A6A; word-break: keep-all;
+
+                &:first-child 
+                {
+                    width: 24.5rem; min-width: 24.5rem; max-width: 24.5rem; 
+
+                    & + *:last-child {font-weight: 700; color: #3E3E3E;}
+                }
+
+                &[colspan] {width: 100%; min-width: 0; max-width: inherit; text-align: center;}
+            }
+        }
+    }
+
+    // 설문조사
+    form[action*="survey.es"] .board_view {border-bottom: 0 none;}
+
+    .survey_view 
+    {
+        @include width(124rem, 100%);
+        padding: 0; border: 0 none; background-color: transparent;
+
+        .group 
+        {
+            margin: 4rem 0; padding: 0;
+
+            & + .group {border: 0 none;}
+        }
+
+        h3.title {margin-bottom: 1.5rem; font-size: 1.7rem;}
+        textarea {width: 100%; height: 32rem; padding: 2rem; border-radius: 0.3rem; font-size: 1.7rem;}
+        label {font-size: 1.7rem;}
+        input[type="date"][title*="날짜"] {width: 25rem; height: 6rem; padding: 0 2rem; border-radius: 0.3rem; border: 1px solid #D5D4DA;}
+
+        .item {padding: 6rem 6.5rem 7rem; border-radius: 1rem; background-color: #F6F7F9;}
+        .form_check input:checked + label::before {background-color: #000; color: #fff;}
+        .form_check, .form_radio {margin: 0;}
+
+        .list
+        {
+            &.type1
+            {
+                display: flex; flex-wrap: wrap;
+        
+                & > li 
+                {
+                    margin: 0; flex: 1 1 20%;
+        
+                    &:last-child textarea[placeholder*="기타의견"] {width: 500%; height: auto; margin-left: -400%; margin-top: 1.5rem;}
+                }
+            }
+
+            &.type2 .graph 
+            {
+                margin: 1.5rem 0 4rem;
+
+                &:last-child {margin-bottom: 0;}
+
+                .bar {overflow: hidden; height: 4rem; border-radius: 1rem;}
+                .per {height: 100%; background-color: #325AC1;}
+                .txt {right: 0; top: auto; bottom: calc(100% + 1.5rem); font-size: 1.7rem; font-weight: 600; color: #2C2C2C;}
+            }
+        }
+    }
+
+    // FAQ
+    .faq
+    {
+        .label
+        {
+            &::before {background-color: #333;}
+            &::after {color: #000;}
+        }
+
+        .item 
+        {
+            background-color: #F6F7F9;
+
+            &::before {color: #000;}
+            &::after {background-color: #fff; color: #3E3E3E;}
+        }
+
+        .group.active 
+        {
+            box-shadow: none;            
+        
+            .label::before {background-color: #22449C;}
+        }
+    }
+
+    // 레이어팝업
+    .layerpopup
+    {
+        @include hidden(0, 0);
+        position: fixed; left: 50%; top: 50%; z-index: 10; margin: 0; background-color: rgba(0, 0, 0, 0.5);
+
+        &.active {@include visible(100%, 100%); left: 0; top: 0; transition: $time2;}
+
+        .group {@include position(center); @include width(75rem, calc(100% - 4rem)); overflow: hidden; border-radius: 0.5rem; border: 1px solid #666; background-color: #fff;}
+
+        h2 {height: 6.5rem; padding-left: 3rem; background-color: #183072; font-size: 2rem; color: #fff; line-height: 6.5rem;}
+
+        .btns 
+        {
+            position: absolute; right: 3rem; top: 0; line-height: 6.5rem;
+
+            button {@include hover(before); @include square(2.5rem); margin-left: 2rem; font-size: 2.5rem; color: #fff;}
+
+            $icons: (refresh: '', close: '');
+            @each $keys, $icon in $icons { .#{$keys}::before {@include icon(type3, $icon);} }
+        }
+
+        .item {overflow-y: auto; max-height: calc(100vh - 12.5rem); padding: 3rem;}
+
+        // 일정
+        .day
+        {
+            .title {display: block; margin-bottom: 3rem; font-size: 2.8rem; font-weight: 700; color: #3E3E3E; text-align: center;}
+            .txt {margin-left: 4rem; flex-grow: 1;}
+
+            ul {border-top: 1px solid #000;}
+            li {display: flex; min-height: 10.5rem; padding: 2rem; border-bottom: 1px solid #ddd; align-items: center;}
+
+            .date 
+            {
+                position: relative; width: 15.5rem; height: 6.5rem; text-align: center; white-space: nowrap; line-height: 6.5rem;
+
+                span 
+                {
+                    @include square(6.5rem); 
+                    position: absolute; left: 0; top: 0; padding-top: 0.75rem; border-radius: 0.3rem; border: 1px solid #ddd; font-size: 1.4rem; font-weight: 500; color: #303030; line-height: 1.4;
+
+                    & + span {left: auto; right: 0;}
+                }
+
+                strong {display: block; font-size: 2.1rem; font-weight: 700;}
+            }
+        }
+    }
+}
+
+//========== 반응형 ==========//
+@media (max-width: 1280px) 
+{
+    // 영상 게시판 목록
+    #contents .youtube_list > li {width: 25%;}
+}
+
+@media (max-width: 1024px) 
+{
+    #contents 
+    {
+        // 게시판
+        .board-list, .board_list
+        {
+            // 목록
+            tr {overflow: hidden; position: relative; padding: 1.5rem 1rem;}
+
+            td
+            {
+                display: inline; font-size: $size;
+
+                &.txt_left[aria-label="소프트웨어명"]
+                {
+                    display: block; font-size: 1.8rem; font-weight: 600; color: #333;
+
+                    &::before, & + td::before {display: none;}
+                }
+                
+                &.txt_left[aria-label="제목"]
+                {
+                    display: block;
+
+                    a .xi-new {top: 0.3rem; margin: 0;}
+
+                    &::before, & + td::before {display: none;}
+
+                    & + td[aria-label="기간"]
+                    {
+                        display: inline-block; padding: 0.5rem 0; line-height: 3rem; vertical-align: middle;
+
+                        &::before {display: inline-block; margin-left: 1rem;}
+                    }
+                }
+
+                & + td::before {display: inline-block; position: relative; top: 1.2rem; width: 0.5rem; height: 0.5rem; margin: 0 1rem 0 0.5rem; border-radius: 100%; background-color: #ddd; content: ''; vertical-align: top;}
+
+                &:first-child[aria-label="번호"].m_hidden, &.disable {display: none;}
+
+                &[aria-label="상태"] 
+                {
+                    float: left; padding: 0.5rem 0;
+
+                    &::before {display: none;}
+                }
+
+                &[aria-label="결과보기"]:last-child
+                {
+                    @include position(top); 
+                    right: 0;
+
+                    &::before {display: none;}
+                }
+            }
+
+            // 글쓰기
+            .tstyle_write
+            {
+                tr {padding: 0;}
+                th, td {display: block; width: 100%;}
+                th {padding: 0.75rem 2rem !important; font-size: $size;}
+                td {height: auto; padding: 1rem 0 2rem;}
+
+                .contents 
+                {
+                    padding: 0;
+
+                    & > * {margin-bottom: -0.6rem;}
+                }
+                
+                .form_textbox {width: 100%;}
+
+                // 첨부파일
+                .file 
+                {
+                    &:last-child {padding-bottom: 0;}
+                    & + .file th {display: none;}
+
+                    &.active
+                    {
+                        td {padding-left: 0; padding-top: 1rem;}
+
+                        & + .file td
+                        {
+                            padding-top: 1rem; padding-bottom: 1rem;
+        
+                            &::before {left: 0; width: 100%;}
+                        }
+                    }
+
+                    .txt {color: transparent;}
+                }
+            }
+
+            // 전화번호 검색
+            &.tel
+            {
+                tr {padding-left: 4rem;}
+
+                td
+                {
+                    display: block; position: relative; min-height: 2.5rem; padding-left: 6.5rem; line-height: 2.5rem;
+
+                    &::before {position: absolute; left: 0; top: 0; width: auto; height: auto; margin: 0; background: none; font-weight: 400; content: attr(aria-label);}
+
+                    &[aria-label="번호"]
+                    {
+                        @include square(3rem);
+                        position: absolute; left: 0; top: 1.5rem; padding: 0 0.15rem 0 0; border-radius: 100%; background-color: #000; font-weight: 600; color: #fff; 
+
+                        &::before {display: none;}
+                    }
+
+                    &[aria-label="부서"], &[aria-label="성명"] 
+                    { 
+                        padding-left: 0;
+
+                        &::before {display: none;} 
+                    }
+
+                    &[aria-label="성명"] {margin-bottom: 1rem; font-size: 1.8rem; font-weight: 500; color: #300;}
+                }
+            }
+        }
+
+        // 게시판 페이저
+        .board_pager .group a 
+        {
+            width: auto; margin: 0; padding: 0; background: none; color: inherit;
+
+            &:first-child:last-child::after {display: none;}
+        }
+
+        // 블로그형 게시판 목록
+        .blog_list
+        {
+            a {padding-right: 0;}
+
+            .desc > span
+            {
+                font-size: 1.5rem;
+
+                & + span {margin-left: 2rem;}
+            }
+
+            // PDF 게시판 내용
+            &.pdf_view
+            {
+                & > li {padding-left: 35rem;}
+        
+                .thumb {width: 25rem; height: 33.5rem;}
+                .desc {min-height: 22rem;}
+            }
+        }
+
+        // PDF 게시판 목록
+        .board_pdf > li {max-width: 33.333%; flex: 1 1 33.333%;}
+
+        // 영상 게시판 목록
+        .youtube_list > li {width: 33.333%;}
+
+        // 본인인증
+        form[action*="nonMemberLogin"], form[action*="nice.checkplus.co.kr"]
+        {
+            & + .tit_1 + .box4
+            {
+                max-width: calc(100% - 12rem); transform: translate(3rem, 50rem);
+        
+                p br {display: none;}
+        
+                & + .certify 
+                {
+                    height: 70rem; padding: 4.5rem 0 25rem;
+        
+                    .btn1[onclick*="kakaoLogin();"]::after {font-size: $size;}
+                }
+            }
+        }
+
+        // 학사일정 콘텐츠
+        div.cal_box .lst
+        {
+            thead {display: none;}
+
+            tr 
+            {
+                display: block; padding: 1rem; border-bottom: 1px solid #ddd;
+
+                td {display: block; padding: 0; border: 0 none;}
+            }
+        }
+
+        // 설문조사 내용
+        .survey_view .item {padding: 3rem 4rem 4rem;}
+    }
+}
+
+@media (max-width: 768px) 
+{
+    #contents 
+    {
+        // 게시판 목록
+        .board_info .form
+        {
+            display: block; position: relative; padding: 3rem 3rem 2rem; text-align: left;
+
+            .form_select {height: 5.5rem;}
+            .form_textbox {width: calc(100% - 10rem);}
+            p.btn-write {margin: 0;}
+
+            .item
+            {
+                display: block; margin: 0 0 1rem !important;
+
+                &.form_radio {display: inline-block; margin-top: -1rem !important; line-height: inherit;}
+                &.btn {margin-bottom: 0 !important;}
+            }
+            
+            .btn
+            {
+                button {position: absolute; right: 3rem; bottom: 3rem; max-width: 9rem;}
+                .btn-write {bottom: auto; top: 3rem;}
+            }
+
+            .btn-group
+            {
+                margin: 0;
+
+                .btn {width: auto;}
+            }
+        }
+
+        // 게시판 내용
+        .board_view
+        {
+            & > .title {padding-top: 2rem; font-size: 2rem;}
+
+            .contents 
+            {
+                margin-top: 2rem; padding: 3rem 0;
+
+                .i-info, ul[style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; background-color: #f8f9fa; color: #666; text-align: center;  margin: 10px 0; "] 
+                {
+                    margin: 1rem 0 3rem !important; padding: 1rem 1.5rem 1rem 4rem; line-height: 1.5;
+
+                    i, &::before {left: 1.5rem; top: 1rem;}
+                }
+            }
+
+            .file 
+            {
+                display: block; padding: 1.5rem 2.5rem;
+
+                .list
+                {
+                    li {height: 3.5rem; padding-right: 18rem;}
+
+                    .link {position: absolute;}
+                    .btn_line {width: 7rem; height: 3.5rem; margin-left: -1px; line-height: calc(3.5rem - 2px); vertical-align: top;}
+                }
+            }
+        }
+
+        // 게시판 버튼
+        .board_btns {margin: 2rem 0 3rem;}
+
+        // 블로그형 게시판 목록
+        .blog_list
+        {
+            .thumb 
+            {
+                width: 20rem; height: 18rem;
+
+                img {@include position(left); max-width: inherit; height: 100%;}
+            }
+
+            .txt {@include ellipsis(2, 2.5rem); margin-bottom: 2rem;}
+
+            .desc 
+            {
+                padding: 0; 
+
+                & > span 
+                {
+                    display: block;
+
+                    & + span {margin-left: 0;}
+                }
+            }
+
+            // PDF 게시판 목록
+            &.pdf_view
+            {
+                & > li {padding: 3rem 3rem 11rem 28rem;}
+        
+                .thumb {left: 3rem; top: 3rem; width: 22rem; height: 30rem;}
+                .desc {min-height: 30rem; margin-bottom: 0;}
+                
+                .pdf_btn .btn
+                {
+                    position: absolute; left: 3rem; bottom: 3rem; width: calc(100% - 6rem);
+        
+                    a {flex-grow: 1;}
+                }
+            }
+        }
+
+        // PDF 게시판 버튼
+        .depth4_tab + .mb50, .mb50:first-child
+        {
+            & > .mb10.Fr 
+            {
+                padding: 1.5rem;
+    
+                & > .btn_line 
+                {
+                    height: 4.5rem; padding: 0 1.5rem; line-height: calc(4.5rem - 2px);
+    
+                    i {margin-right: 0;}
+                }
+            }
+        }
+
+        // 영상 게시판 내용
+        div#video_div
+        {
+            padding-top: 11.5rem;
+
+            & > div.player {margin-bottom: 6.5rem;}
+
+            & > div.movie_text
+            {
+                margin-top: 0;
+
+                .title {display: flex; padding: 0; font-size: 2rem; text-align: center; justify-content: center; white-space: normal; line-height: 1.2; align-items: center;}
+            }
+        }
+
+        // 영상 게시판 목록
+        .youtube_list > li {width: 50%;}
+
+        // 본인인증
+        form[action*=nonMemberLogin] + .tit_1 + .box4 
+        {
+            padding: 3rem 3.5rem; transform: translate(3rem, 45rem);
+
+            &::after {left: 2rem; top: 3rem;}
+
+            & + .certify
+            {
+                height: 65rem; padding-bottom: 23rem;
+
+                .item {padding: 0 2.5rem;}
+                .title {margin-bottom: 1.5rem;}
+                .btn1[onclick*="kakaoLogin();"]::before, .title {padding-top: 12rem; background-size: 10rem auto; font-size: 2rem;}
+                
+                .btn1
+                {
+                    margin-top: 7rem;
+
+                    &[onclick*="kakaoLogin();"]
+                    {
+                        margin-top: 29.45rem;
+        
+                        &::before {top: 0;}
+                        &::after {top: 17rem; padding: 0 3.5rem;}
+                    }
+                }
+            }
+        }
+
+        // 학사일정 상단
+        .year_area + .month_area {padding: 0 1rem;}
+
+        // 학사일정 콘텐츠
+        div.cal_box { .CalendarList, .lst {width: calc(50% - 1.5rem);} }
+    }
+}
+
+@media (max-width: 500px) 
+{
+    #contents 
+    {
+        // 게시판 상단
+        .board_info
+        {
+            .form
+            {
+                padding: 2rem 2rem 1rem;
+
+                .form_textbox, .form_select, .form_select select {height: 4.5rem !important;}
+                .form_select::after {line-height: 4.5rem;}
+
+                .btn
+                {
+                    button {right: 2rem; bottom: 2rem; height: 4.5rem !important;}
+                    .btn-write {top: 2rem;}
+                }
+            }
+
+            .page { .total::after, .current::before {display: none;} }
+        }
+
+        // 게시판 목록
+        .board-list, .board_list
+        {
+            td
+            {
+                &.txt_left[aria-label=제목] + td[aria-label=기간]
+                {
+                    display: block; padding: 0;
+        
+                    &::before {display: none;}
+                }
+
+                &[aria-label=상태] {padding-top: 0;}
+            }
+        }
+
+        // 게시판 내용
+        .board_view .file .list
+        {
+            li {height: auto; padding-right: 0;}
+            .link {display: none;}
+        }
+
+        // 댓글
+        .comment .list li > p:nth-child(2) {position: absolute; top: auto; right: 0; bottom: 1.5rem;}
+
+        // PDF 게시판 목록
+        .board_pdf
+        {
+            width: calc(100% + 2rem); padding: 0.5rem 0 1.5rem;
+
+            & > li {max-width: 50%; flex: 0 0 50%; padding: 2rem 2rem 1rem 0;}
+        }
+
+        // PDF 게시판 버튼
+        .depth4_tab + .mb50, .mb50:first-child { & > .mb10.Fr > .btn_line {display: block; width: 100%;} }
+
+        // 블로그형 게시판 목록
+        .blog_list
+        {
+            .thumb
+            {
+                float: none; width: 100%; height: auto;
+
+                img {@include position(none); width: 100%;}
+            }
+
+            .desc {float: none; width: 100%; margin: 2rem 0 0;}
+
+            // PDF 게시판 내용
+            &.pdf_view
+            {
+                & > li {padding: 3rem;}
+        
+                .thumb 
+                {
+                    display: block; position: relative; left: auto; top: auto; width: 100%; height: 0; padding-top: 132%;
+        
+                    img {position: absolute; left: 0; top: 0;}
+                }
+                
+                .desc 
+                {
+                    min-height: 0; margin: 0 0 2rem;
+        
+                    .title {min-height: 0; font-size: 2rem;}
+                }
+        
+                .pdf_btn .btn 
+                {
+                    position: static; width: 100%; flex-wrap: nowrap;
+        
+                    a 
+                    {
+                        padding: 0 3rem 0 1.5rem;
+        
+                        &::after {right: 1.5rem;}
+                    }
+                }
+            }
+        }
+
+        // 영상 게시판 내용
+        div#video_div
+        {
+            margin-bottom: 5rem;
+
+            & > div.movie_text > .contents 
+            {
+                max-height: 24rem; padding: 3rem;
+        
+                &::before {height: 3rem;}
+            }
+        }
+
+        // 영상 게시판 목록
+        .youtube_list
+        {
+            width: calc(100% + 2rem); padding-bottom: 2rem;
+
+            & > li {width: 50%; padding: 2rem 2rem 0 0;}
+            .thumb {margin-bottom: 1.5rem;}
+
+            .desc > span 
+            {
+                display: block;
+
+                &::before {display: none !important;}
+            }
+        }
+
+        // 본인인증
+        form[action*=nonMemberLogin] + .tit_1 + .box4
+        {
+            height: 25rem; padding-right: 2rem; transform: translate(3rem, 76rem);
+
+            & + .certify
+            {
+                display: block; height: 104rem; padding: 3rem;
+        
+                .btn1 
+                {
+                    margin-top: 2rem;
+        
+                    &[onclick*="kakaoLogin();"]
+                    {
+                        margin-top: 31rem;
+
+                        &::before {top: 3rem;}
+                        &::after {top: 20rem; width: 30rem; padding: 0;}
+                    }
+                }
+        
+                .item
+                {
+                    padding: 0;
+        
+                    & + .item {margin-top: 3rem; border: 0 none; border-top: 1px dashed #ccc;}
+                }
+            }
+        }
+
+        // 학사일정 상단
+        .year_area
+        {
+            height: 4rem; line-height: 4rem;
+
+            & > .pre_year, & > .next_year
+            {
+                font-size: $size;
+
+                &::after {display: none;}
+            }
+
+            & > .pre_year {left: 5.5rem;}
+            & > .next_year {right: 5.5rem;}
+
+            div 
+            {
+                & > a {width: 4rem; height: 4rem; line-height: calc(4rem - 2px);}
+
+                strong::after {display: none;}
+            }
+
+            & + .month_area 
+            {
+                margin: 2rem 0 5rem;
+
+                a
+                {
+                    height: 5rem; font-size: $size;
+
+                    &::after {display: none;}
+                }
+            }
+        }
+
+        // 학사일정 콘텐츠
+        div.cal_box
+        {
+            .CalendarList {float: none; width: 100%; padding: 1.5rem 1.5rem 1rem;}
+            .lst {float: none; width: 100%; border-top: 0 none;}
+        }
+
+        // 설문조사
+        .survey_view
+        {
+            .group {margin: 3rem 0;}
+            .item {padding: 2rem;}
+
+            .list
+            {
+                &.type1
+                {
+                    display: block;
+        
+                    & > li 
+                    {
+                        display: block;
+        
+                        &:last-child textarea[placeholder*=기타의견] {width: 100%; margin: 0;}
+                    }
+                }
+
+                &.type2 .graph 
+                {
+                    margin: 1rem 0 2rem;
+
+                    .txt {bottom: calc(100% + 1rem); font-size: 1.4rem;}
+                }
+            }
+        }
+
+        // 레이어팝업 일간일정
+        .layerpopup .day
+        {
+            li {display: block;}
+
+            .txt {margin: 1rem 0 0;}
+        }
+    }
+}

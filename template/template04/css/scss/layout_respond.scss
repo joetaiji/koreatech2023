@@ -1,0 +1,29 @@
+@charset "UTF-8";
+@import "../../../common/css/scss/mixin"; //공통 믹스인 - 미디어쿼리 분기 사이즈 정보
+@import "mixin"; //템플릿별 믹스인
+
+@include media($pad){
+  #header.active #gnb2 .control{bottom:inherit;}
+  #hnb .sns_list .list{position: absolute;left: 0;top: 5rem;z-index: 2;gap: 1rem; padding:2.5rem 0;}
+  #hnb .sns_list .sns_title, 
+  #hnb .sns_list .sns_close,
+  #hnb .sns_list::before{display: none;}
+  #hnb .sns_list.active{position: static;}
+  #hnb .sns_list.active .sns_layer{
+    background: none; position: static;transform:none; padding: 0;
+  }
+  #hnb .sns_list.active .sns_layer .list i{background:#0E1A43!important;}
+
+  .all_nav #hnb .container{height: calc(var(--headHeight) - var(--gnbHeight));}
+  .all_nav #gnb2 .topmenu_all{width: 100%;margin-top: var(--gnbHeight);border-top: 1px solid rgba(255, 255, 255, 0.1);}
+  .all_nav #gnb2 .topmenu_all.active{width: 100%;}
+  .all_nav #gnb2 .topmenu_all > li{border-bottom:0;}  
+  .all_nav #gnb2 .topmenu_all > li > a{padding:2rem;}
+  .all_nav #gnb2 .topmenu_all .submenu > ul > li > a{border-bottom: 0;padding: 1rem;font-size: 1.8rem;}
+  .all_nav #gnb2 .topmenu_all > li.active > a{background: none;}
+  .all_nav #gnb2 .topmenu_all > li.active > a::after{display: none;}
+  .all_nav #gnb2 .topmenu_all > li.active .submenu{
+    position: static; height:auto;background: rgba(0, 0, 0, 0.3);color:#fff; padding: 1rem;
+  }
+  .all_nav #gnb2 .topmenu_all .submenu .is-depth3.active > a::after{background:#ccc;}
+}

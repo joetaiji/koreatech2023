@@ -1,0 +1,2 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %><%@ taglib prefix="c" uri="/WEB-INF/taglib/c.tld" %><%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%><%@ taglib prefix="es" uri="/WEB-INF/taglib/easesoft.tld" %>
+				<h1 id="logo"><a href="${pageContext.request.contextPath}/${siteDetail.site_url}/" style="background-image:url('${pageContext.request.contextPath}/${siteDetail.site_url}/img/logo.svg')"><span class="IR">${siteDetail.site_description}</span></a></h1>

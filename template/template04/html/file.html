@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title></title>
+<link rel="stylesheet" href="http://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<style>
+	*{box-sizing:border-box;}
+	body {margin:0; padding:30px; font-family:'맑은 고딕'; font-size:12px; color:#333; line-height:normal;}
+
+	/*타입*/
+	i,
+	em {display: inline-block;background-color: #333;color: #fff;border-radius: 3px;padding:0px 3px;font-style: normal;font-size: 11px;margin:0 2px;}
+
+	.note{background: #ff3300;}
+	.b i{background: #1d9fc0;}
+	.p i{background: #8548d4;}	
+	.m i{background: #e09532;}	
+	
+	a{color:inherit;text-decoration:none;}
+	a:hover{text-decoration:underline;}
+	.linkWindow::after{content: '';font-family: 'xeicon';margin-right: 5px; color:#e06d01;font-weight: bold;}
+
+	.info{border: 1px solid #ddd;background: #f5f5f5; margin-bottom: 2rem;line-height: 2;}
+	
+	.nav{border-top:3px solid #333;border-bottom:3px solid #333;}
+	.nav ul{margin:0;padding:0;list-style:none;}
+	.topmenu_all{padding:0;}
+	.topmenu_all .title_area{display: none;}
+	.topmenu_all a{ padding:10px;flex:1;}
+	.topmenu_all span{color:#f3a600;}
+	.topmenu_all li{display: flex;}
+	.topmenu_all li~li{border-top:1px solid #ddd;}
+	.topmenu_all>li{background-color:#778;display: block;}
+	.topmenu_all>li>a{font-weight:bold;font-size:14px;text-align:center;display:block;width:100%;color:#fff;}
+	.topmenu_all .submenu{background-color:#fff;border:1px solid #ddd;}
+	.topmenu_all .submenu>ul>li>a{font-weight: bold;flex:0 0 20%;}
+	.topmenu_all .submenu>ul>li>a + div{background-color:#fff;flex:1;}
+	.topmenu_all .submenu>ul>li>a + div .lnb-detail>li>a{background:#f9f9fc;}
+	.topmenu_all .submenu>li>a + div,
+	.topmenu_all .submenu>ul>li>a + div .lnb-detail>li>a + .depth3,
+	.topmenu_all .depth3>li>a + .depth4{flex:1 1 80%; max-width:80%;border-left:1px solid #eee;font-size:11px;}
+	.topmenu_all .nodata{background-color:#f8f8f8;color:#ccc;}
+	.topmenu_all .complete{background:#eaeaec;}
+	
+	@media screen and (max-width:767px){
+		body{padding:10px;}
+		.topmenu_all a{max-width:100%!important;display:block;}
+		.topmenu_all a + ul{max-width:100%!important;}
+		.topmenu_all li{display: block;}
+		.topmenu_all .depth3{border-top:1px solid #f6f6f6;}
+		.topmenu_all .depth3 li{margin-left:15px;}
+	}
+	</style>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js'></script>
+<script>
+$(document).ready(function(){
+	$("title").text($("h1").text());
+	$("a").each(function(){
+		$(this).append(" <span> " + $(this).attr("href") + "</span>");		
+	}); 
+	$("em").parent().addClass("complete");
+	$(".b>a").prepend("<i>게시판</i>");
+	$(".p>a").prepend("<i>프로그램</i>"); 
+	$(".m>a").prepend("<i>메일</i>"); 
+});
+</script>
+</head>
+<body>
+<h1>파일리스트[학과템플릿A] - JYC</h1>
+<div class="info">
+	<ul>
+		<li class="b"><a href="">li에 class="b"</a></li>
+		<li class="p"><a href="">li에 class="p"</a></li>
+		<li><a href=""><em>월/일</em> 작업완료일 : a링크안에 em태그로 월/일로 표기하면 complete클래스가 생성되어 셀 색이 바뀝니다.</a></li>
+		<li><a href="">개발자에게 전달할 내용등 특이사항을 적을때 사용<em class="note">특이사항</em></a></li>
+	</ul>
+</div>
+<nav class="nav" id="gnb">
+	
+	<ul id="head_menu_all" class="topmenu_all"> 
+		<li class="lnb1 mnfirst active">
+			<a href="">레이아웃</a>
+			<div class="submenu">
+				<ul class="sub01">
+					<li class="sub01 subfirst active"><a href="index.html">메인<em>01/10</em></a></li>
+					<li class="sub02"><a href="sub.html">서브<em>01/10</em></a></li>
+					<li class="sub02"><a href="mail.html">메일<em>01/15</em></a></li>
+				</ul>
+			</div>
+		</li>				
+		<li class="lnb2">
+			<a href="">교직원 소개</a>
+			<div class="submenu">
+				<ul class="sub02">
+					<li class="sub01 subfirst p"><a href="/template/template07/html/학과_교수소개.html">교수 소개</a></li>
+					<li class="sub01 subfirst p"><a href="/template/template07/html/학과_교수소개_상세.html">교수 소개_상세</a></li>
+					<li class="sub02 p"><a href="/template/template07/html/학과_교수소개.html">기술연구원 소개</a></li>
+					<li class="sub03 sublast p"><a href="/template/template07/html/학과_교수소개.html">직원 소개</a></li>
+				</ul>
+			</div>
+		</li>		
+		<li class="lnb8 mnlast">
+			<a href="">회원기능</a>
+			<div class="submenu">
+				<ul class="sub08">
+					<li class="sub01 subfirst p"><a href="login.html">로그인<em>01/15</em></a></li>
+				</ul>
+			</div>
+		</li>
+	</ul>
+
+	<!--<ul id="head_menu" class="topmenu">
+		
+		<li class="type"><a href="">콘텐츠</a>	
+		</li>
+		 <li class="type"><a href="">게시판</a>
+			<ul class="depth1">
+				<li>
+				  <a href="">공지사항</a>
+				  <ul class="depth2">
+					<li>
+					  <a href="bod_list.html">Board List</a>
+					  <a href="bod_list_detail.html">Board List(상세검색)</a>
+					</li>
+					<li>
+					  <a href="bod_view.html">Board View</a>
+					</li>
+					<li>
+					  <a href="bod_media.html">media View</a>
+					</li>
+					<li>
+					  <a href="bod_write.html">Board Write</a>
+					</li>
+				  </ul>
+				</li>
+				<li>
+				  <a href="bod_gallery.html">갤러리</a>
+				  <ul class="depth2">
+					<li>
+					  <a href="bod_gallery.html">갤러리</a>
+					  <ul class="depth3">
+						<li>
+						  <a href="bod_gallery.html">Gallery List</a>
+						</li>
+						<li>
+						  <a href="gallery_view.html">Gallery View</a>
+						</li>                    
+					  </ul>
+					</li>
+					<li>
+					  <a href="book_style1.html">북스타일1</a>
+					</li>
+					<li>
+					  <a href="book_style2.html">북스타일2</a>
+					</li>
+				  </ul>
+				  
+				</li>
+				<li>
+				  <a href="table_thumb.html">썸네일 보드</a>                  
+				</li>
+				<li>
+				  <a href="faq.html">FAQ</a>
+				</li>
+				<li>
+				  <a href="calendar.html">calendar</a>
+				</li>
+				<li>
+				  <a href="form.html">form</a>
+				</li>                
+			  </ul>
+		</li> 
+	</ul> -->
+  
+</nav>
+</body>
+</html>
